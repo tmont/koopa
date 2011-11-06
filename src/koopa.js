@@ -11,7 +11,11 @@
 		module.exports = definition;
 	}
 }('koopa', function(userAgent) {
-	function getDefaultVersionInfo(regex, name) {
+	var koopa = {
+		userAgent: userAgent
+	};
+	
+	function parseVersion(regex, name) {
 		var version = (regex.exec(userAgent) || [])[1] || '';
 		var majorVersion = version.split('.')[0];
 		majorVersion && (koopa[name + majorVersion] = true);
@@ -29,14 +33,10 @@
 		return newString;
 	}
 
-	var koopa = {
-		userAgent: userAgent
-	};
-
 	//browser
 	var match;
 	if (match = /\b(?:MS(IE)|(Firefox)|(Chrome)|(Opera))\b/i.exec(userAgent)) {
-		koopa[toCamelCase(match[1])] = true;
+		koopa[toCamelCase(match[1] || match[2] || match[3] || match[4])] = true;
 	}
 
 	//chrome identifies as safari
@@ -54,30 +54,30 @@
 	}
 
 	//mobile browser
-	if (match = /\b(?:(iP(?:ad|od|hone))|(Blackberry)|((?:MS)?IEMobile)|(Opera Mini)\b/i.exec(userAgent)) {
-		koopa[toCamelCase(match[1])] = true;
+	if (match = /\b(?:(iP(?:ad|od|hone))|(Blackberry)|((?:MS)?IEMobile)|(Opera Mini))\b/i.exec(userAgent)) {
+		koopa[toCamelCase(match[1] || match[2] || match[3] || match[4])] = true;
 		koopa.ios = koopa.ipad || koopa.iphone || koopa.ipod;
 		koopa.mobile = true;
 	}
 
 	var version = '';
 	if (koopa.ie) {
-		version = getDefaultVersionInfo(/\bMSIE ([a-z\d.]+)\b/i, 'ie');
+		version = parseVersion(/\bMSIE ([a-z\d.]+)\b/i, 'ie');
 		koopa.cssPrefix = 'ms';
 	} else if (koopa.firefox) {
-		version = getDefaultVersionInfo(/\bFirefox\/([a-z\d.]+)\b/i, 'ie');
+		version = parseVersion(/\bFirefox\/([a-z\d.]+)\b/i, 'firefox');
 		koopa.cssPrefix = 'moz';
 	} else if (koopa.chrome) {
-		version = getDefaultVersionInfo(/\bChrome\/([a-z\d.]+)\b/i, 'chrome');
+		version = parseVersion(/\bChrome\/([a-z\d.]+)\b/i, 'chrome');
 		koopa.cssPrefix = 'webkit';
 	} else if (koopa.safari) {
-		version = getDefaultVersionInfo(/\bVersion\/([a-z\d.]+)\b/i, 'safari');
+		version = parseVersion(/\bVersion\/([a-z\d.]+)\b/i, 'safari');
 		koopa.cssPrefix = 'webkit';
 	} else if (koopa.opera) {
-		version = getDefaultVersionInfo(/\bVersion\/([a-z\d.]+)\b/i, 'opera');
+		version = parseVersion(/\bVersion\/([a-z\d.]+)\b/i, 'opera');
 		if (!version) {
 			//older versions of opera
-			version = getDefaultVersionInfo(/\bOpera\/([a-z\d.]+)\b/i, 'opera');
+			version = parseVersion(/\bOpera\/([a-z\d.]+)\b/i, 'opera');
 		}
 
 		koopa.cssPrefix = 'o';

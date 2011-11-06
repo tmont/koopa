@@ -16,11 +16,15 @@
 	"main": "./src/koopa.js",
 
 	"devDependencies": {
-
+		"jarvis-test": ">=2.0.3"
 	},
 
 	"directories": {
 		"lib": "./src"
+	},
+
+	"scripts": {
+		"test": "./test.sh"
 	},
 
 	"repository": {
