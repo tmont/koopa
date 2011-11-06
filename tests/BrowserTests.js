@@ -37,6 +37,16 @@ module.exports = function Browser_tests() {
 					Assert.that(info.version, Has.property('minor').equalTo(0));
 					Assert.that(info.version, Has.property('rest').equalTo(1));
 					Assert.that(info.version.toString(), Is.equalTo('7.0.1'));
+				},
+
+				function Should_parse_version_with_non_numeric_values() {
+					var info = koopa(data.firefox.nonNumericVersion);
+					verifyCommonValues(info, 6);
+
+					Assert.that(info.version, Has.property('major').equalTo(6));
+					Assert.that(info.version, Has.property('minor').equalTo('a2'));
+					Assert.that(info.version, Has.property('rest').empty());
+					Assert.that(info.version.toString(), Is.equalTo('6.a2'));
 				}
 			];
 		},
