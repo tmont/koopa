@@ -63,8 +63,8 @@ function handleRequest(request) {
 
 Parsed User-Agent Values
 ------------------------
-Only the `version` property will be set every time; the rest are conditional on the
-user agent string.
+Only the `version` and `userAgent` properties will be set every time; the rest are conditional on the
+user agent string. To get the entire version string, use `koopa.version.toString()`.
 
 ```javascript
 {
@@ -106,4 +106,39 @@ user agent string.
 }
 ```
 
-To get the entire version string, use `version.toString()`.
+__koopa__ will also set some version specific properties for the browser. For example, if the
+user-agent string is `MSIE 6.0 (Windows NT)`, the following will be returned (note the `ie6`
+property):
+
+```javascript
+{
+  ie: true,
+  ie6: true,
+  windows: true,
+  cssPrefix: 'ms',
+  userAgent: 'MSIE 6.0 (Windows NT)'
+  version: {
+    major: '6',
+    minor: '0',
+    rest: ''
+  }
+}
+```
+
+A `koopa[browserName + majorVersion]` property is set if the major version can be parsed. Here's
+another example for the user-agent `Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1`:
+
+```javascript
+{
+  firefox: true,
+  firefox7: true,
+  linux: true,
+  cssPrefix: 'moz',
+  userAgent: 'Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1'
+  version: {
+    major: '7',
+    minor: '0',
+    rest: '1'
+  }
+}
+```
