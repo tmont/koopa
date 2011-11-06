@@ -42,8 +42,68 @@
 	//chrome identifies as safari
 	koopa.safari = !koopa.chrome && /\bSafari\b/i.test(userAgent);
 
-	//os
-	if (match = /\b(Linux|Windows|Mac)\b/i.exec(userAgent)) {
+	//specific os
+	if (match = /\bWindows NT ([\d.]+)?\b/i.exec(userAgent)) {
+		koopa.windows = true;
+		if (match[1]) {
+			switch (match[1]) {
+				case 6.1: koopa.windows7 = true; break;
+				case 6.0: koopa.windowsVista = true; break;
+				case 5.1: koopa.windowsXp = true; break;
+				case 6.2: koopa.windows8 = true; break;
+				case 5.0: koopa.windows2000 = true; break;
+			}
+		}
+
+		if (/\b(?:WOW|win|x)64|\b/i.test(userAgent)) {
+			koopa.sixtyFourBit = true;
+		}
+	}
+
+	if (match = /\bMac OS X ([\w.]+)?\b/i.exec(userAgent)) {
+		koopa.macintosh = true;
+		koopa.macOsX = true;
+		if (match[1]) {
+			if (match[1].indexOf('_') === -1) {
+				match[1] = match[1].split('.');
+			} else {
+				match[1] = match[1].split('_');
+			}
+			koopa['macOsX' + match[1].join('_')] = true;
+			koopa['macOsX' + match[1][0]] = true;
+			if (match[1][1]) {
+				koopa['macOsX' + match[1][0] + '_' + match[1][1]] = true;
+				if (match[1][1] >= 5) {
+					koopa.sixtyFourBit = true;
+				}
+			}
+		}
+	}
+
+	//specific linux distro
+	if (match = /\bFreeBSD|[KX]?Ubuntu|Red Hat|Linux Mint|SUSE|Gentoo|CentOS|Fedora|Debian\b/i.exec(userAgent)) {
+		koopa.linux = true;
+		koopa[toCamelCase([match[1]])] = true;
+		if (match = /(ubuntu|Linux Mint)\/([\d.]) \((\w+)\)/i.exec(match[1])) {
+			koopa[match[1] + match[2]] = true;
+			koopa[match[3]] = true;
+		} else if (match = /\b(Red Hat|SUSE|CentOS|Fedora|Debian)[\/\-](.+?)\b/i.exec(match[1])) {
+			var distro = toCamelCase(match[1]);
+			match[2] = match[2].split('.');
+			koopa[distro + match[2].join('_')] = true;
+			if (match[2][0]) {
+				koopa[distro + match[2][0]] = true;
+				koopa[distro + match[2][0] + '_' + match[2][1]] = true;
+			}
+		}
+
+		if (/\bx86_64|amd64\b/i.test(userAgent)) {
+			koopa.sixtyFourBit = true;
+		}
+	}
+
+	//catch-all os
+	if (!koopa.windows && !koopa.macintosh && !koopa.linux && (match = /\b(Linux|Windows|Macintosh)\b/i.exec(userAgent))) {
 		koopa[toCamelCase(match[1])] = true;
 	}
 

@@ -44,9 +44,9 @@ module.exports = function Browser_tests() {
 					verifyCommonValues(info, 6);
 
 					Assert.that(info.version, Has.property('major').equalTo(6));
-					Assert.that(info.version, Has.property('minor').equalTo('a2'));
+					Assert.that(info.version, Has.property('minor').equalTo('0a2'));
 					Assert.that(info.version, Has.property('rest').empty());
-					Assert.that(info.version.toString(), Is.equalTo('6.a2'));
+					Assert.that(info.version.toString(), Is.equalTo('6.0a2'));
 				}
 			];
 		},
@@ -71,10 +71,10 @@ module.exports = function Browser_tests() {
 				},
 
 				function Should_detect_safari_on_mac() {
-					var info = koopa(data.safari.mac);
+					var info = koopa(data.safari.macintosh);
 					verifyCommonValues(info, 5);
 
-					data.util.assertOs(info, 'mac');
+					data.util.assertOs(info, 'macintosh');
 				},
 
 				function Should_parse_version() {
