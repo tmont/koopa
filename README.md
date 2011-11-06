@@ -18,6 +18,7 @@ Include koopa somewhere:
 ```
 
 (ab)Use it:
+
 ```javascript
 if (koopa.ie && koopa.version.major < 9) {
   alert("You suck!");
@@ -27,6 +28,7 @@ if (koopa.ie && koopa.version.major < 9) {
 ```
 
 Or if you're using jQuery, it'll automatically extend the global `jQuery` object:
+
 ```javascript
 if ($.koopa.ie && $.koopa.version.major < 9) {
   alert("You suck!");
@@ -43,6 +45,7 @@ npm install koopa
 ```
 
 (ab)Use it:
+
 ```javascript
 var koopa = require('koopa');
 
