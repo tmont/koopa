@@ -39,6 +39,44 @@ module.exports = function Browser_tests() {
 					Assert.that(info.version.toString(), Is.equalTo('7.0.1'));
 				}
 			];
+		},
+
+		function Safari_tests() {
+			function verifyCommonValues(info, majorVersion) {
+				Assert.that(info, Has.key('safari'));
+				Assert.that(info, Has.property('safari').TRUE());
+
+				Assert.that(info, Has.key('safari' + majorVersion));
+				Assert.that(info, Has.property('safari' + majorVersion).TRUE());
+
+				Assert.that(info, Has.key('cssPrefix'));
+				Assert.that(info, Has.property('cssPrefix').equalTo('webkit'));
+			}
+			return [
+				function Should_detect_safari_on_windows() {
+					var info = koopa(data.safari.windows);
+					verifyCommonValues(info, 5);
+
+					data.util.assertOs(info, 'windows');
+				},
+
+				function Should_detect_safari_on_mac() {
+					var info = koopa(data.safari.mac);
+					verifyCommonValues(info, 5);
+
+					data.util.assertOs(info, 'mac');
+				},
+
+				function Should_parse_version() {
+					var info = koopa(data.safari.windows);
+					verifyCommonValues(info, 5);
+
+					Assert.that(info.version, Has.property('major').equalTo(5));
+					Assert.that(info.version, Has.property('minor').equalTo(0));
+					Assert.that(info.version, Has.property('rest').equalTo(4));
+					Assert.that(info.version.toString(), Is.equalTo('5.0.4'));
+				}
+			];
 		}
 	];
 };
