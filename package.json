@@ -1,0 +1,30 @@
+{
+	"name": "koopa",
+	"version": "1.0.0",
+	"keywords": ["browser", "useragent", "user-agent", "sniff"],
+	"description": "Browser sniffing for node/jquery/not jquery",
+	"author": {
+		"name": "Tommy Montgomery",
+		"email": "tmont@tmont.com",
+		"url": "http://tmont.com/"
+	},
+
+	"files": [
+		"./src/koopa.js"
+	],
+
+	"main": "./src/koopa.js",
+
+	"devDependencies": {
+
+	},
+
+	"directories": {
+		"lib": "./src"
+	},
+
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/tmont/koopa.git"
+	}
+}
