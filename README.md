@@ -1,11 +1,11 @@
-Koopa 1.0.0
+Koopa
 ===========
 
-A browser sniffing library by [Tommy Montgomery](http://tmont.com/)
+> A browser sniffing library by [Tommy Montgomery](http://tmont.com/)
 
 License
 -------
-Licensed under [WTFPL](http://sam.zoy.org/wtfpl/)
+> Licensed under the [WTFPL](http://sam.zoy.org/wtfpl/)
 
 Quick and Dirty
 ---------------
