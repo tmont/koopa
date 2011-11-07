@@ -200,49 +200,50 @@ module.exports = function Operating_system_tests() {
 			];
 		},
 
+		function Mac_os_x_tests() {
+			return [
+				function Should_detect_os_x_version() {
+					var info = koopa(data.mac.osx10_5);
+					Assert.that(info, Has.key('macintosh'));
+					Assert.that(info, Has.property('macintosh').TRUE());
+
+					Assert.that(info, Has.key('macOsX'));
+					Assert.that(info, Has.property('macOsX').TRUE());
+
+					Assert.that(info, Has.key('macOsX10'));
+					Assert.that(info, Has.property('macOsX10').TRUE());
+
+					Assert.that(info, Has.key('macOsX10_5'));
+					Assert.that(info, Has.property('macOsX10_5').TRUE());
+				},
+
+				function Should_detect_os_x_version_with_underscored_version() {
+					var info = koopa(data.mac.osxUnderscores);
+					Assert.that(info, Has.key('macintosh'));
+					Assert.that(info, Has.property('macintosh').TRUE());
+
+					Assert.that(info, Has.key('macOsX'));
+					Assert.that(info, Has.property('macOsX').TRUE());
+
+					Assert.that(info, Has.key('macOsX10'));
+					Assert.that(info, Has.property('macOsX10').TRUE());
+
+					Assert.that(info, Has.key('macOsX10_6_8'));
+					Assert.that(info, Has.property('macOsX10_6_8').TRUE());
+				},
+
+				function Should_compute_codename() {
+					Assert.that(koopa(data.mac.osx10_0), Has.property('cheetah').TRUE());
+					Assert.that(koopa(data.mac.osx10_1), Has.property('puma').TRUE());
+					Assert.that(koopa(data.mac.osx10_2), Has.property('jaguar').TRUE());
+					Assert.that(koopa(data.mac.osx10_3), Has.property('panther').TRUE());
+					Assert.that(koopa(data.mac.osx10_4), Has.property('tiger').TRUE());
+					Assert.that(koopa(data.mac.osx10_5), Has.property('leopard').TRUE());
+					Assert.that(koopa(data.mac.osx10_6), Has.property('snowLeopard').TRUE());
+					Assert.that(koopa(data.mac.osx10_7), Has.property('lion').TRUE());
+				}
+			];
+		}
 	];
-	function Mac_os_x_tests() {
-		return [
-			function Should_detect_os_x_version() {
-				var info = koopa(data.mac.osx10_5);
-				Assert.that(info, Has.key('macintosh'));
-				Assert.that(info, Has.property('macintosh').TRUE());
 
-				Assert.that(info, Has.key('macOsX'));
-				Assert.that(info, Has.property('macOsX').TRUE());
-
-				Assert.that(info, Has.key('macOsX10'));
-				Assert.that(info, Has.property('macOsX10').TRUE());
-
-				Assert.that(info, Has.key('macOsX10_5'));
-				Assert.that(info, Has.property('macOsX10_5').TRUE());
-			},
-
-			function Should_detect_os_x_version_with_underscored_version() {
-				var info = koopa(data.mac.osxUnderscores);
-				Assert.that(info, Has.key('macintosh'));
-				Assert.that(info, Has.property('macintosh').TRUE());
-
-				Assert.that(info, Has.key('macOsX'));
-				Assert.that(info, Has.property('macOsX').TRUE());
-
-				Assert.that(info, Has.key('macOsX10'));
-				Assert.that(info, Has.property('macOsX10').TRUE());
-
-				Assert.that(info, Has.key('macOsX10_6_8'));
-				Assert.that(info, Has.property('macOsX10_6_8').TRUE());
-			},
-
-			function Should_compute_codename() {
-				Assert.that(koopa(data.mac.osx10_0), Has.property('cheetah').TRUE());
-				Assert.that(koopa(data.mac.osx10_1), Has.property('puma').TRUE());
-				Assert.that(koopa(data.mac.osx10_2), Has.property('jaguar').TRUE());
-				Assert.that(koopa(data.mac.osx10_3), Has.property('panther').TRUE());
-				Assert.that(koopa(data.mac.osx10_4), Has.property('tiger').TRUE());
-				Assert.that(koopa(data.mac.osx10_5), Has.property('leopard').TRUE());
-				Assert.that(koopa(data.mac.osx10_6), Has.property('snowLeopard').TRUE());
-				Assert.that(koopa(data.mac.osx10_7), Has.property('lion').TRUE());
-			}
-		];
-	}
 };
