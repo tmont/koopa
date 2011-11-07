@@ -23,10 +23,10 @@
 	}
 
 	function toCamelCase(string) {
-		var words = string.split(' ');
-		var newString = words.shift().toLowerCase();
+		var words = (string + '').split(' ');
+		var newString = words.shift().replace(/\W/g, '_').toLowerCase();
 		for (var i = 0, word; i < words.length; i++) {
-			word = words[i].toLowerCase();
+			word = words[i].replace(/\W/g, '_').toLowerCase();
 			newString += word.charAt(0).toUpperCase() + word.substring(1);
 		}
 
@@ -34,13 +34,15 @@
 	}
 
 	//browser
-	var match;
+	var match, temp;
 	if (match = /\b(?:MS(IE)|(Firefox)|(Chrome)|(Opera))\b/i.exec(userAgent)) {
 		koopa[toCamelCase(match[1] || match[2] || match[3] || match[4])] = true;
 	}
 
 	//chrome identifies as safari
-	koopa.safari = !koopa.chrome && /\bSafari\b/i.test(userAgent);
+	if (!koopa.chrome && /\bSafari\b/i.test(userAgent)) {
+		koopa.safari = true;
+	}
 
 	//specific os
 	if (match = /\bWindows NT ([\d.]+)?\b/i.exec(userAgent)) {
@@ -83,17 +85,19 @@
 	//specific linux distro
 	if (match = /\bFreeBSD|[KX]?Ubuntu|Red Hat|Linux Mint|SUSE|Gentoo|CentOS|Fedora|Debian\b/i.exec(userAgent)) {
 		koopa.linux = true;
-		koopa[toCamelCase([match[1]])] = true;
-		if (match = /(ubuntu|Linux Mint)\/([\d.]) \((\w+)\)/i.exec(match[1])) {
-			koopa[match[1] + match[2]] = true;
-			koopa[match[3]] = true;
-		} else if (match = /\b(Red Hat|SUSE|CentOS|Fedora|Debian)[\/\-](.+?)\b/i.exec(match[1])) {
-			var distro = toCamelCase(match[1]);
-			match[2] = match[2].split('.');
-			koopa[distro + match[2].join('_')] = true;
-			if (match[2][0]) {
-				koopa[distro + match[2][0]] = true;
-				koopa[distro + match[2][0] + '_' + match[2][1]] = true;
+		var distro = toCamelCase(match[0]);
+		koopa[distro] = true;
+		if (temp = /\b([kx]?ubuntu|Linux Mint)\/(.+?) \((\w+?)\)/i.exec(userAgent)) {
+			koopa[toCamelCase(temp[1] + temp[2])] = true;
+			koopa[toCamelCase(temp[3])] = true;
+		} else if (temp = /\b(Red Hat|SUSE|CentOS|Fedora|Debian)[\/\-]([^)\s]+)/i.exec(userAgent)) {
+			temp[2] = temp[2].split('.');
+			koopa[distro + toCamelCase(temp[2].join('_'))] = true;
+			if (temp[2][0]) {
+				koopa[distro + toCamelCase(temp[2][0])] = true;
+				if (temp[2][1]) {
+					koopa[distro + toCamelCase(temp[2][0] + '_' + temp[2][1])] = true;
+				}
 			}
 		}
 
