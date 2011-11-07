@@ -29,6 +29,9 @@ module.exports = function Architecture_tests() {
 			info = koopa(data.arch.osx10_5);
 			Assert.that(info, Has.key('sixtyFourBit'));
 			Assert.that(info, Has.property('sixtyFourBit').TRUE());
+
+			info = koopa(data.arch.osx10_4);
+			Assert.that(info, Has.no.key('sixtyFourBit'));
 		}
 	];
 };
