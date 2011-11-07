@@ -51,7 +51,7 @@ var koopa = require('koopa');
 
 //presumably some kind of HTTP request handler
 function handleRequest(request) {
-  var userAgent = request.headers\['User-Agent'\];
+  var userAgent = request.headers['User-Agent'];
   var info = koopa(userAgent);
   if (info.ie && info.version.major < 9) {
     console.log('You suck!');
