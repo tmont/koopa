@@ -196,6 +196,15 @@ module.exports = function Operating_system_tests() {
 
 					Assert.that(info, Has.key('windowsVista'));
 					Assert.that(info, Has.property('windowsVista').TRUE());
+				},
+
+				function Should_detect_windows_8() {
+					var info = koopa(data.windows.win8);
+					Assert.that(info, Has.key('windows'));
+					Assert.that(info, Has.property('windows').TRUE());
+
+					Assert.that(info, Has.key('windows8'));
+					Assert.that(info, Has.property('windows8').TRUE());
 				}
 			];
 		},
