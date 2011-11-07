@@ -19,6 +19,16 @@ module.exports = function Architecture_tests() {
 			var info = koopa(data.arch.win64);
 			Assert.that(info, Has.key('sixtyFourBit'));
 			Assert.that(info, Has.property('sixtyFourBit').TRUE());
+		},
+
+		function Should_treat_mac_osx_greater_than_or_equal_to_10_5_as_64_bit() {
+			var info = koopa(data.arch.osx10_6);
+			Assert.that(info, Has.key('sixtyFourBit'));
+			Assert.that(info, Has.property('sixtyFourBit').TRUE());
+
+			info = koopa(data.arch.osx10_5);
+			Assert.that(info, Has.key('sixtyFourBit'));
+			Assert.that(info, Has.property('sixtyFourBit').TRUE());
 		}
 	];
 };
