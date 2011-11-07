@@ -38,6 +38,18 @@ module.exports = {
 		osx10_6: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5'
 	},
 
+	mac: {
+		osx10_0: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.0; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
+		osx10_1: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.1; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
+		osx10_2: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.2; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
+		osx10_3: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.3; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
+		osx10_4: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
+		osx10_5: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
+		osx10_6: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
+		osx10_7: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
+		osxUnderscores: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1'
+	},
+
 	safari: {
 		macintosh: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1',
 		windows: 'Mozilla/5.0 (Windows; U; Windows NT 6.1; tr-TR) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27'

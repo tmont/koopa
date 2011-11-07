@@ -79,6 +79,17 @@
 				if (match[1][1] >= 5) {
 					koopa.sixtyFourBit = true;
 				}
+
+				switch (match[1][1]) {
+					case '7': koopa.lion = true; break;
+					case '6': koopa.snowLeopard = true; break;
+					case '5': koopa.leopard = true; break;
+					case '4': koopa.tiger = true; break;
+					case '3': koopa.panther = true; break;
+					case '2': koopa.jaguar = true; break;
+					case '1': koopa.puma = true; break;
+					case '0': koopa.cheetah = true; break;
+				}
 			}
 		}
 	}
