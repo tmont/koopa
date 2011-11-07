@@ -48,12 +48,13 @@
 	if (match = /\bWindows NT ([\d.]+)?\b/i.exec(userAgent)) {
 		koopa.windows = true;
 		if (match[1]) {
-			switch (match[1]) {
-				case 6.1: koopa.windows7 = true; break;
-				case 6.0: koopa.windowsVista = true; break;
-				case 5.1: koopa.windowsXp = true; break;
-				case 6.2: koopa.windows8 = true; break;
-				case 5.0: koopa.windows2000 = true; break;
+			temp = match[1].split('.').slice(0, 2).join('.');
+			switch (temp) {
+				case '6.1': koopa.windows7 = true; break;
+				case '6.0': koopa.windowsVista = true; break;
+				case '5.1': koopa.windowsXp = true; break;
+				case '6.2': koopa.windows8 = true; break;
+				case '5.0': koopa.windows2000 = true; break;
 			}
 		}
 
