@@ -1,10 +1,10 @@
 var koopa = require('../src/koopa');
 var data = require('./data');
 
-module.exports = function Ooperating_system_tests() {
+module.exports = function Operating_system_tests() {
 	return [
 		function Should_detect_ubuntu_version_and_distro() {
-			var info = koopa(data.firefox.ubuntu);
+			var info = koopa(data.linux.ubuntu);
 			Assert.that(info, Has.key('ubuntu'));
 			Assert.that(info, Has.property('ubuntu').TRUE());
 
@@ -19,7 +19,7 @@ module.exports = function Ooperating_system_tests() {
 		},
 
 		function Should_detect_kubuntu_version_and_distro() {
-			var info = koopa(data.firefox.kubuntu);
+			var info = koopa(data.linux.kubuntu);
 			Assert.that(info, Has.key('kubuntu'));
 			Assert.that(info, Has.property('kubuntu').TRUE());
 
@@ -34,7 +34,7 @@ module.exports = function Ooperating_system_tests() {
 		},
 
 		function Should_detect_xubuntu_version_and_distro() {
-			var info = koopa(data.firefox.xubuntu);
+			var info = koopa(data.linux.xubuntu);
 			Assert.that(info, Has.key('xubuntu'));
 			Assert.that(info, Has.property('xubuntu').TRUE());
 
@@ -49,7 +49,7 @@ module.exports = function Ooperating_system_tests() {
 		},
 
 		function Should_detect_freebsd() {
-			var info = koopa(data.firefox.freeBsd);
+			var info = koopa(data.linux.freeBsd);
 			Assert.that(info, Has.key('freebsd'));
 			Assert.that(info, Has.property('freebsd').TRUE());
 
@@ -58,7 +58,7 @@ module.exports = function Ooperating_system_tests() {
 		},
 
 		function Should_detect_debian_version_and_distro() {
-			var info = koopa(data.firefox.debian);
+			var info = koopa(data.linux.debian);
 			Assert.that(info, Has.key('debian'));
 			Assert.that(info, Has.property('debian').TRUE());
 
@@ -73,7 +73,7 @@ module.exports = function Ooperating_system_tests() {
 		},
 
 		function Should_detect_fedora_version_and_distro() {
-			var info = koopa(data.firefox.fedora);
+			var info = koopa(data.linux.fedora);
 			Assert.that(info, Has.key('fedora'));
 			Assert.that(info, Has.property('fedora').TRUE());
 
@@ -88,7 +88,7 @@ module.exports = function Ooperating_system_tests() {
 		},
 
 		function Should_detect_suse_version_and_distro() {
-			var info = koopa(data.firefox.suse);
+			var info = koopa(data.linux.suse);
 			Assert.that(info, Has.key('suse'));
 			Assert.that(info, Has.property('suse').TRUE());
 
@@ -103,7 +103,7 @@ module.exports = function Ooperating_system_tests() {
 		},
 
 		function Should_detect_gentoo() {
-			var info = koopa(data.firefox.gentoo);
+			var info = koopa(data.linux.gentoo);
 			Assert.that(info, Has.key('gentoo'));
 			Assert.that(info, Has.property('gentoo').TRUE());
 
@@ -112,7 +112,7 @@ module.exports = function Ooperating_system_tests() {
 		},
 
 		function Should_detect_centos_version_and_distro() {
-			var info = koopa(data.firefox.centos);
+			var info = koopa(data.linux.centos);
 			Assert.that(info, Has.key('centos'));
 			Assert.that(info, Has.property('centos').TRUE());
 
@@ -127,7 +127,7 @@ module.exports = function Ooperating_system_tests() {
 		},
 
 		function Should_detect_red_hat_version_and_distro() {
-			var info = koopa(data.firefox.redHat);
+			var info = koopa(data.linux.redHat);
 			Assert.that(info, Has.key('redHat'));
 			Assert.that(info, Has.property('redHat').TRUE());
 
@@ -142,7 +142,7 @@ module.exports = function Ooperating_system_tests() {
 		},
 
 		function Should_detect_linux_mint_version_and_distro() {
-			var info = koopa(data.firefox.mint);
+			var info = koopa(data.linux.mint);
 			Assert.that(info, Has.key('linuxMint'));
 			Assert.that(info, Has.property('linuxMint').TRUE());
 
