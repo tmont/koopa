@@ -15,6 +15,8 @@
 
 	"main": "./src/koopa.js",
 
+	"bin": "./bin/koopa-cli.js",
+
 	"devDependencies": {
 		"jarvis-test": ">=2.0.3"
 	},
