@@ -257,9 +257,15 @@ module.exports = function Operating_system_tests() {
 		function Non_specific_os_tests() {
 			return [
 				function Should_detect_linux() {
-					var info = koopa(data.linux.noDistro);
-					Assert.that(info, Has.key('linux'));
-					Assert.that(info, Has.property('linux').TRUE());
+					data.util.assertKoopaProperty(koopa(data.linux.noDistro), 'linux');
+				},
+
+				function Should_detect_windows() {
+					data.util.assertKoopaProperty(koopa(data.windows.noDistro), 'windows');
+				},
+
+				function Should_detect_mac() {
+					data.util.assertKoopaProperty(koopa(data.mac.noDistro), 'macintosh');
 				}
 			];
 		}

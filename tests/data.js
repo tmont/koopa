@@ -26,7 +26,8 @@ module.exports = {
 		winxp: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2b5) Gecko/20091204 Firefox/3.6b5',
 		win8: 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:5.0) Gecko/20100101 Firefox/5.0',
 		win2k: 'Mozilla/5.0 (Windows; U; Windows NT 5.0; ru; rv:1.9.1.13) Gecko/20100914 Firefox/3.5.13',
-		vista: 'Mozilla/5.0 (Windows; U; Windows NT 6.0; ru; rv:1.9.1.13) Gecko/20100914 Firefox/3.5.13'
+		vista: 'Mozilla/5.0 (Windows; U; Windows NT 6.0; ru; rv:1.9.1.13) Gecko/20100914 Firefox/3.5.13',
+		noDistro: 'Mozilla/5.0 (Windows; U; ru; rv:1.9.1.13) Gecko/20100914 Firefox/3.5.13'
 	},
 
 	arch: {
@@ -48,7 +49,8 @@ module.exports = {
 		osx10_5: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
 		osx10_6: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
 		osx10_7: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
-		osxUnderscores: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1'
+		osxUnderscores: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1',
+		noDistro: 'Mozilla/5.0 (Macintosh; U; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5'
 	},
 
 	mobile: {
