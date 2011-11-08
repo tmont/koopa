@@ -1,7 +1,7 @@
 {
 	"name": "koopa",
 	"version": "1.0.0",
-	"keywords": ["browser", "useragent", "user-agent", "sniff"],
+	"keywords": ["browser", "useragent", "user-agent", "sniff", "user", "agent", "sniffing"],
 	"description": "Browser sniffing for node/jquery/not jquery",
 	"author": {
 		"name": "Tommy Montgomery",
