@@ -12,7 +12,7 @@
 	if (!userAgent && typeof(window) !== 'undefined') {
 		userAgent = window.navigator.userAgent.toString();
 	}
-	
+
 	var koopa = {
 		userAgent: userAgent
 	};
@@ -40,6 +40,8 @@
 	if (match = /\b(?:MS(IE)|(Firefox)|(Chrome)|(Opera))\b/i.exec(userAgent)) {
 		koopa[toCamelCase(match[1] || match[2] || match[3] || match[4])] = true;
 	}
+
+
 
 	//chrome identifies as safari
 	if (!koopa.chrome && /\bSafari\b/i.test(userAgent)) {

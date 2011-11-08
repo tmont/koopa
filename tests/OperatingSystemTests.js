@@ -1,4 +1,4 @@
-var koopa = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
 var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
 
 function Operating_system_tests() {
@@ -6,7 +6,7 @@ function Operating_system_tests() {
 		function Linux_distro_tests() {
 			return [
 				function Should_detect_ubuntu_version_and_distro() {
-					var info = koopa(data.linux.ubuntu);
+					var info = koopaDeref(data.linux.ubuntu);
 					Assert.that(info, Has.key('ubuntu'));
 					Assert.that(info, Has.property('ubuntu').TRUE());
 
@@ -21,7 +21,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_kubuntu_version_and_distro() {
-					var info = koopa(data.linux.kubuntu);
+					var info = koopaDeref(data.linux.kubuntu);
 					Assert.that(info, Has.key('kubuntu'));
 					Assert.that(info, Has.property('kubuntu').TRUE());
 
@@ -36,7 +36,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_xubuntu_version_and_distro() {
-					var info = koopa(data.linux.xubuntu);
+					var info = koopaDeref(data.linux.xubuntu);
 					Assert.that(info, Has.key('xubuntu'));
 					Assert.that(info, Has.property('xubuntu').TRUE());
 
@@ -51,7 +51,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_freebsd() {
-					var info = koopa(data.linux.freeBsd);
+					var info = koopaDeref(data.linux.freeBsd);
 					Assert.that(info, Has.key('freebsd'));
 					Assert.that(info, Has.property('freebsd').TRUE());
 
@@ -60,7 +60,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_debian_version_and_distro() {
-					var info = koopa(data.linux.debian);
+					var info = koopaDeref(data.linux.debian);
 					Assert.that(info, Has.key('debian'));
 					Assert.that(info, Has.property('debian').TRUE());
 
@@ -75,7 +75,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_fedora_version_and_distro() {
-					var info = koopa(data.linux.fedora);
+					var info = koopaDeref(data.linux.fedora);
 					Assert.that(info, Has.key('fedora'));
 					Assert.that(info, Has.property('fedora').TRUE());
 
@@ -90,7 +90,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_suse_version_and_distro() {
-					var info = koopa(data.linux.suse);
+					var info = koopaDeref(data.linux.suse);
 					Assert.that(info, Has.key('suse'));
 					Assert.that(info, Has.property('suse').TRUE());
 
@@ -105,7 +105,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_gentoo() {
-					var info = koopa(data.linux.gentoo);
+					var info = koopaDeref(data.linux.gentoo);
 					Assert.that(info, Has.key('gentoo'));
 					Assert.that(info, Has.property('gentoo').TRUE());
 
@@ -114,7 +114,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_centos_version_and_distro() {
-					var info = koopa(data.linux.centos);
+					var info = koopaDeref(data.linux.centos);
 					Assert.that(info, Has.key('centos'));
 					Assert.that(info, Has.property('centos').TRUE());
 
@@ -129,7 +129,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_red_hat_version_and_distro() {
-					var info = koopa(data.linux.redHat);
+					var info = koopaDeref(data.linux.redHat);
 					Assert.that(info, Has.key('redHat'));
 					Assert.that(info, Has.property('redHat').TRUE());
 
@@ -144,7 +144,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_linux_mint_version_and_distro() {
-					var info = koopa(data.linux.mint);
+					var info = koopaDeref(data.linux.mint);
 					Assert.that(info, Has.key('linuxMint'));
 					Assert.that(info, Has.property('linuxMint').TRUE());
 
@@ -163,7 +163,7 @@ function Operating_system_tests() {
 		function Windows_nt_tests() {
 			return [
 				function Should_detect_windows_7() {
-					var info = koopa(data.windows.win7);
+					var info = koopaDeref(data.windows.win7);
 					Assert.that(info, Has.key('windows'));
 					Assert.that(info, Has.property('windows').TRUE());
 
@@ -172,7 +172,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_windows_xp() {
-					var info = koopa(data.windows.winxp);
+					var info = koopaDeref(data.windows.winxp);
 					Assert.that(info, Has.key('windows'));
 					Assert.that(info, Has.property('windows').TRUE());
 
@@ -181,7 +181,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_windows_2000() {
-					var info = koopa(data.windows.win2k);
+					var info = koopaDeref(data.windows.win2k);
 					Assert.that(info, Has.key('windows'));
 					Assert.that(info, Has.property('windows').TRUE());
 
@@ -190,7 +190,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_windows_vista() {
-					var info = koopa(data.windows.vista);
+					var info = koopaDeref(data.windows.vista);
 					Assert.that(info, Has.key('windows'));
 					Assert.that(info, Has.property('windows').TRUE());
 
@@ -199,7 +199,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_windows_8() {
-					var info = koopa(data.windows.win8);
+					var info = koopaDeref(data.windows.win8);
 					Assert.that(info, Has.key('windows'));
 					Assert.that(info, Has.property('windows').TRUE());
 
@@ -212,7 +212,7 @@ function Operating_system_tests() {
 		function Mac_os_x_tests() {
 			return [
 				function Should_detect_os_x_version() {
-					var info = koopa(data.mac.osx10_5);
+					var info = koopaDeref(data.mac.osx10_5);
 					Assert.that(info, Has.key('macintosh'));
 					Assert.that(info, Has.property('macintosh').TRUE());
 
@@ -227,7 +227,7 @@ function Operating_system_tests() {
 				},
 
 				function Should_detect_os_x_version_with_underscored_version() {
-					var info = koopa(data.mac.osxUnderscores);
+					var info = koopaDeref(data.mac.osxUnderscores);
 					Assert.that(info, Has.key('macintosh'));
 					Assert.that(info, Has.property('macintosh').TRUE());
 
@@ -242,14 +242,14 @@ function Operating_system_tests() {
 				},
 
 				function Should_compute_codename() {
-					Assert.that(koopa(data.mac.osx10_0), Has.property('cheetah').TRUE());
-					Assert.that(koopa(data.mac.osx10_1), Has.property('puma').TRUE());
-					Assert.that(koopa(data.mac.osx10_2), Has.property('jaguar').TRUE());
-					Assert.that(koopa(data.mac.osx10_3), Has.property('panther').TRUE());
-					Assert.that(koopa(data.mac.osx10_4), Has.property('tiger').TRUE());
-					Assert.that(koopa(data.mac.osx10_5), Has.property('leopard').TRUE());
-					Assert.that(koopa(data.mac.osx10_6), Has.property('snowLeopard').TRUE());
-					Assert.that(koopa(data.mac.osx10_7), Has.property('lion').TRUE());
+					Assert.that(koopaDeref(data.mac.osx10_0), Has.property('cheetah').TRUE());
+					Assert.that(koopaDeref(data.mac.osx10_1), Has.property('puma').TRUE());
+					Assert.that(koopaDeref(data.mac.osx10_2), Has.property('jaguar').TRUE());
+					Assert.that(koopaDeref(data.mac.osx10_3), Has.property('panther').TRUE());
+					Assert.that(koopaDeref(data.mac.osx10_4), Has.property('tiger').TRUE());
+					Assert.that(koopaDeref(data.mac.osx10_5), Has.property('leopard').TRUE());
+					Assert.that(koopaDeref(data.mac.osx10_6), Has.property('snowLeopard').TRUE());
+					Assert.that(koopaDeref(data.mac.osx10_7), Has.property('lion').TRUE());
 				}
 			];
 		},
@@ -257,15 +257,15 @@ function Operating_system_tests() {
 		function Non_specific_os_tests() {
 			return [
 				function Should_detect_linux() {
-					data.util.assertKoopaProperty(koopa(data.linux.noDistro), 'linux');
+					data.util.assertKoopaProperty(koopaDeref(data.linux.noDistro), 'linux');
 				},
 
 				function Should_detect_windows() {
-					data.util.assertKoopaProperty(koopa(data.windows.noDistro), 'windows');
+					data.util.assertKoopaProperty(koopaDeref(data.windows.noDistro), 'windows');
 				},
 
 				function Should_detect_mac() {
-					data.util.assertKoopaProperty(koopa(data.mac.noDistro), 'macintosh');
+					data.util.assertKoopaProperty(koopaDeref(data.mac.noDistro), 'macintosh');
 				}
 			];
 		}

@@ -1,4 +1,4 @@
-var koopa = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+var koopaDeref = typeof(module) === 'undefined' ? window.koopaDeref : require('../src/koopaDeref');
 var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
 
 function Browser_tests() {
@@ -13,33 +13,33 @@ function Browser_tests() {
 
 			return [
 				function Should_detect_firefox_on_windows() {
-					verifyCommonValues(koopa(data.firefox.windows), 6);
+					verifyCommonValues(koopaDeref(data.firefox.windows), 6);
 				},
 
 				function Should_detect_firefox_on_linux() {
-					verifyCommonValues(koopa(data.firefox.linux), 7);
+					verifyCommonValues(koopaDeref(data.firefox.linux), 7);
 				},
 
 				function Should_detect_firefox_on_mac() {
-					verifyCommonValues(koopa(data.firefox.mac), 4);
+					verifyCommonValues(koopaDeref(data.firefox.mac), 4);
 				},
 
 				function Should_parse_version() {
-					verifyCommonValues(koopa(data.firefox.threePartVersion), 7);
+					verifyCommonValues(koopaDeref(data.firefox.threePartVersion), 7);
 
-					Assert.that(koopa(data.firefox.threePartVersion).version, Has.property('major').equalTo(7));
-					Assert.that(koopa(data.firefox.threePartVersion).version, Has.property('minor').equalTo(0));
-					Assert.that(koopa(data.firefox.threePartVersion).version, Has.property('rest').equalTo(1));
-					Assert.that(koopa(data.firefox.threePartVersion).version.toString(), Is.equalTo('7.0.1'));
+					Assert.that(koopaDeref(data.firefox.threePartVersion).version, Has.property('major').equalTo(7));
+					Assert.that(koopaDeref(data.firefox.threePartVersion).version, Has.property('minor').equalTo(0));
+					Assert.that(koopaDeref(data.firefox.threePartVersion).version, Has.property('rest').equalTo(1));
+					Assert.that(koopaDeref(data.firefox.threePartVersion).version.toString(), Is.equalTo('7.0.1'));
 				},
 
 				function Should_parse_version_with_non_numeric_values() {
-					verifyCommonValues(koopa(data.firefox.nonNumericVersion), 6);
+					verifyCommonValues(koopaDeref(data.firefox.nonNumericVersion), 6);
 
-					Assert.that(koopa(data.firefox.nonNumericVersion).version, Has.property('major').equalTo(6));
-					Assert.that(koopa(data.firefox.nonNumericVersion).version, Has.property('minor').equalTo('0a2'));
-					Assert.that(koopa(data.firefox.nonNumericVersion).version, Has.property('rest').empty());
-					Assert.that(koopa(data.firefox.nonNumericVersion).version.toString(), Is.equalTo('6.0a2'));
+					Assert.that(koopaDeref(data.firefox.nonNumericVersion).version, Has.property('major').equalTo(6));
+					Assert.that(koopaDeref(data.firefox.nonNumericVersion).version, Has.property('minor').equalTo('0a2'));
+					Assert.that(koopaDeref(data.firefox.nonNumericVersion).version, Has.property('rest').empty());
+					Assert.that(koopaDeref(data.firefox.nonNumericVersion).version.toString(), Is.equalTo('6.0a2'));
 				}
 			];
 		},
@@ -54,19 +54,19 @@ function Browser_tests() {
 
 			return [
 				function Should_detect_safari_on_windows() {
-					verifyCommonValues(koopa(data.safari.windows), 5);
+					verifyCommonValues(koopaDeref(data.safari.windows), 5);
 				},
 
 				function Should_detect_safari_on_mac() {
-					verifyCommonValues(koopa(data.safari.mac), 5);
+					verifyCommonValues(koopaDeref(data.safari.mac), 5);
 				},
 
 				function Should_detect_safari_on_linuxc() {
-					verifyCommonValues(koopa(data.safari.linux), 5);
+					verifyCommonValues(koopaDeref(data.safari.linux), 5);
 				},
 
 				function Should_parse_version() {
-					var info = koopa(data.safari.windows);
+					var info = koopaDeref(data.safari.windows);
 					verifyCommonValues(info, 5);
 
 					Assert.that(info.version, Has.property('major').equalTo(5));
@@ -87,11 +87,11 @@ function Browser_tests() {
 
 			return [
 				function Should_detect_ie() {
-					verifyCommonValues(koopa(data.ie.ie9), 9);
+					verifyCommonValues(koopaDeref(data.ie.ie9), 9);
 				},
 
 				function Should_parse_version() {
-					var info = koopa(data.ie.ie8);
+					var info = koopaDeref(data.ie.ie8);
 					verifyCommonValues(info, 8);
 
 					Assert.that(info.version, Has.property('major').equalTo(8));
@@ -113,19 +113,19 @@ function Browser_tests() {
 
 			return [
 				function Should_detect_chrome_on_windows() {
-					verifyCommonValues(koopa(data.chrome.windows), 16);
+					verifyCommonValues(koopaDeref(data.chrome.windows), 16);
 				},
 
 				function Should_detect_chrome_on_mac() {
-					verifyCommonValues(koopa(data.chrome.mac), 15);
+					verifyCommonValues(koopaDeref(data.chrome.mac), 15);
 				},
 
 				function Should_detect_chrome_on_linux() {
-					verifyCommonValues(koopa(data.chrome.linux), 15);
+					verifyCommonValues(koopaDeref(data.chrome.linux), 15);
 				},
 
 				function Should_parse_version() {
-					var info = koopa(data.chrome.mac);
+					var info = koopaDeref(data.chrome.mac);
 					verifyCommonValues(info, 15);
 
 					Assert.that(info.version, Has.property('major').equalTo(15));
@@ -146,19 +146,19 @@ function Browser_tests() {
 
 			return [
 				function Should_detect_opera_on_windows() {
-					verifyCommonValues(koopa(data.opera.windows), 12);
+					verifyCommonValues(koopaDeref(data.opera.windows), 12);
 				},
 
 				function Should_detect_opera_on_mac() {
-					verifyCommonValues(koopa(data.opera.mac), 10);
+					verifyCommonValues(koopaDeref(data.opera.mac), 10);
 				},
 
 				function Should_detect_opera_on_linux() {
-					verifyCommonValues(koopa(data.opera.linux), 11);
+					verifyCommonValues(koopaDeref(data.opera.linux), 11);
 				},
 
 				function Should_parse_version() {
-					var info = koopa(data.opera.mac);
+					var info = koopaDeref(data.opera.mac);
 
 					Assert.that(info.version, Has.property('major').equalTo(10));
 					Assert.that(info.version, Has.property('minor').equalTo(61));
@@ -167,7 +167,7 @@ function Browser_tests() {
 				},
 
 				function Should_parse_old_version() {
-					var info = koopa(data.opera.old);
+					var info = koopaDeref(data.opera.old);
 
 					Assert.that(info.version, Has.property('major').equalTo(9));
 					Assert.that(info.version, Has.property('minor').equalTo(63));
