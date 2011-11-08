@@ -46,7 +46,7 @@ if (info.ie6) {
 Install it:
 
 ```bash
-npm install koopa
+npm install koopa -g
 ```
 
 (ab)Use it:
@@ -66,6 +66,12 @@ function handleRequest(request) {
     console.log('What a hipster...');
   }
 }
+```
+
+Or use it as a debugging tool on the command line:
+
+```bash
+sudo tail -n 1 /var/log/nginx/access.log | php -r "echo end(fgetcsv(STDIN, 0, ' '));" | koopa
 ```
 
 Parsed User-Agent Values
