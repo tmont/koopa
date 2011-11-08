@@ -1,12 +1,10 @@
-Koopa
+Koopa 1.0.0
 ===========
-v1.0.0
-
-> A browser sniffing library by [Tommy Montgomery](http://tmont.com/)
+A browser sniffing library by [Tommy Montgomery](http://tmont.com/)
 
 License
 -------
-> Licensed under the [WTFPL](http://sam.zoy.org/wtfpl/)
+Licensed under the [WTFPL](http://sam.zoy.org/wtfpl/)
 
 Quick and Dirty
 ---------------
@@ -118,7 +116,7 @@ user agent string. To get the entire version string, use `koopa.version.toString
 __koopa__ will also set some version specific properties for the browser and os. Here are a
 few examples:
 
-#### `Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1`
+#### Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1
 ```javascript
 {
 	cssPrefix: 'moz',
@@ -134,7 +132,7 @@ few examples:
 }
 ```
 
-#### `Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.20) Gecko/20110804 Red Hat/3.6-2.el5 Firefox/3.6.20`
+#### Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.20) Gecko/20110804 Red Hat/3.6-2.el5 Firefox/3.6.20
 ```javascript
 {
 	cssPrefix: 'moz',
@@ -155,7 +153,7 @@ few examples:
 }
 ```
 
-#### `Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2b5) Gecko/20091204 Firefox/3.6b5`
+#### Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2b5) Gecko/20091204 Firefox/3.6b5
 ```javascript
 {
 	cssPrefix: 'moz',
@@ -173,7 +171,7 @@ few examples:
 }
 ```
 
-#### `Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 Firefox/4.0b8`
+#### Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 Firefox/4.0b8
 ```javascript
 {
 	cssPrefix: 'moz',
@@ -195,7 +193,7 @@ few examples:
 ```
 
 
-#### `Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10`
+#### Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10
 ```javascript
 {
 	cssPrefix: 'webkit',
@@ -213,7 +211,7 @@ few examples:
 }
 ```
 
-#### `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.04 Chromium/15.0.871.0 Chrome/15.0.871.0 Safari/535.2`
+#### Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.04 Chromium/15.0.871.0 Chrome/15.0.871.0 Safari/535.2
 ```javascript
 {
 	chrome: true,
@@ -231,7 +229,7 @@ few examples:
 }
 ```
 
-#### `Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)`
+#### Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)
 ```javascript
 {
 	cssPrefix: 'ms',
@@ -249,7 +247,7 @@ few examples:
 }
 ```
 
-#### `Opera/9.80 (X11; Linux i686; U; hu) Presto/2.9.168 Version/11.50`
+#### Opera/9.80 (X11; Linux i686; U; hu) Presto/2.9.168 Version/11.50
 ```javascript
 {
 	cssPrefix: 'o',
@@ -265,7 +263,7 @@ few examples:
 }
 ```
 
-#### `Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.337 Mobile Safari/534.1`
+#### Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.337 Mobile Safari/534.1
 ```javascript
 {
 	blackberry: true,
