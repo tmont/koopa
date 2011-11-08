@@ -5,15 +5,12 @@ module.exports = function Browser_tests() {
 	return [
 		function Firefox_tests() {
 			function verifyCommonValues(info, majorVersion) {
-				Assert.that(info, Has.key('firefox'));
-				Assert.that(info, Has.property('firefox').TRUE());
-
-				Assert.that(info, Has.key('firefox' + majorVersion));
-				Assert.that(info, Has.property('firefox' + majorVersion).TRUE());
-
+				data.util.assertKoopaProperty(info, 'firefox');
+				data.util.assertKoopaProperty(info, 'firefox' + majorVersion);
 				Assert.that(info, Has.key('cssPrefix'));
 				Assert.that(info, Has.property('cssPrefix').equalTo('moz'));
 			}
+
 			return [
 				function Should_detect_firefox_on_windows() {
 					var info = koopa(data.firefox.windows);
@@ -53,15 +50,12 @@ module.exports = function Browser_tests() {
 
 		function Safari_tests() {
 			function verifyCommonValues(info, majorVersion) {
-				Assert.that(info, Has.key('safari'));
-				Assert.that(info, Has.property('safari').TRUE());
-
-				Assert.that(info, Has.key('safari' + majorVersion));
-				Assert.that(info, Has.property('safari' + majorVersion).TRUE());
-
+				data.util.assertKoopaProperty(info, 'safari');
+				data.util.assertKoopaProperty(info, 'safari' + majorVersion);
 				Assert.that(info, Has.key('cssPrefix'));
 				Assert.that(info, Has.property('cssPrefix').equalTo('webkit'));
 			}
+
 			return [
 				function Should_detect_safari_on_windows() {
 					var info = koopa(data.safari.windows);
