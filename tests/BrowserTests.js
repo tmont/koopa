@@ -1,7 +1,7 @@
-var koopa = require('../src/koopa');
-var data = require('./data');
+var koopa = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
 
-module.exports = function Browser_tests() {
+function Browser_tests() {
 	return [
 		function Firefox_tests() {
 			function verifyCommonValues(info, majorVersion) {
@@ -177,4 +177,10 @@ module.exports = function Browser_tests() {
 			];
 		}
 	];
-};
+}
+
+if (typeof(module) === 'undefined') {
+	Jarvis.run(Browser_tests);
+} else {
+	module.exports = Browser_tests;
+}

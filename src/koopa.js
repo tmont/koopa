@@ -1,7 +1,5 @@
 (function(name, definition) {
 	if (typeof(module) === 'undefined') {
-		definition = definition(window.navigator.userAgent.toString());
-		
 		if (typeof(jQuery) !== 'undefined') {
 			jQuery[name] = definition;
 		} else {
@@ -11,6 +9,10 @@
 		module.exports = definition;
 	}
 }('koopa', function(userAgent) {
+	if (!userAgent && typeof(window) !== 'undefined') {
+		userAgent = window.navigator.userAgent.toString();
+	}
+	
 	var koopa = {
 		userAgent: userAgent
 	};

@@ -1,7 +1,7 @@
-var koopa = require('../src/koopa');
-var data = require('./data');
+var koopa = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
 
-module.exports = function Mobile_tests() {
+function Mobile_tests() {
 	return [
 		function Should_detect_ipad() {
 			var info = koopa(data.mobile.ipad);
@@ -74,4 +74,10 @@ module.exports = function Mobile_tests() {
 			data.util.assertKoopaProperty(info, 'iemobile');
 		},
 	];
-};
+}
+
+if (typeof(module) === 'undefined') {
+	Jarvis.run(Mobile_tests);
+} else {
+	module.exports = Mobile_tests;
+}

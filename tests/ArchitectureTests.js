@@ -1,7 +1,7 @@
-var koopa = require('../src/koopa');
-var data = require('./data');
+var koopa = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
 
-module.exports = function Architecture_tests() {
+function Architecture_tests() {
 	return [
 		function Should_treat_amd64_as_64_bit() {
 			data.util.assertKoopaProperty(koopa(data.arch.amd64), 'sixtyFourBit');
@@ -25,4 +25,10 @@ module.exports = function Architecture_tests() {
 			Assert.that(koopa(data.arch.osx10_4), Has.no.key('sixtyFourBit'));
 		}
 	];
-};
+}
+
+if (typeof(module) === 'undefined') {
+	Jarvis.run(Architecture_tests);
+} else {
+	module.exports = Architecture_tests;
+}

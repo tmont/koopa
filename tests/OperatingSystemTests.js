@@ -1,7 +1,7 @@
-var koopa = require('../src/koopa');
-var data = require('./data');
+var koopa = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
 
-module.exports = function Operating_system_tests() {
+function Operating_system_tests() {
 	return [
 		function Linux_distro_tests() {
 			return [
@@ -270,4 +270,10 @@ module.exports = function Operating_system_tests() {
 			];
 		}
 	];
-};
+}
+
+if (typeof(module) === 'undefined') {
+	Jarvis.run(Operating_system_tests);
+} else {
+	module.exports = Operating_system_tests;
+}
