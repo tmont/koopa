@@ -252,7 +252,16 @@ module.exports = function Operating_system_tests() {
 					Assert.that(koopa(data.mac.osx10_7), Has.property('lion').TRUE());
 				}
 			];
+		},
+
+		function Non_specific_os_tests() {
+			return [
+				function Should_detect_linux() {
+					var info = koopa(data.linux.noDistro);
+					Assert.that(info, Has.key('linux'));
+					Assert.that(info, Has.property('linux').TRUE());
+				}
+			];
 		}
 	];
-
 };

@@ -19,14 +19,14 @@ module.exports = function Browser_tests() {
 					var info = koopa(data.firefox.windows);
 					verifyCommonValues(info, 6);
 
-					data.util.assertOs(info, 'windows');
+					data.util.assertKoopaProperty(info, 'windows');
 				},
 
 				function Should_detect_firefox_on_linux() {
 					var info = koopa(data.firefox.linux);
 					verifyCommonValues(info, 7);
 
-					data.util.assertOs(info, 'linux');
+					data.util.assertKoopaProperty(info, 'linux');
 				},
 
 				function Should_parse_version() {
@@ -67,14 +67,14 @@ module.exports = function Browser_tests() {
 					var info = koopa(data.safari.windows);
 					verifyCommonValues(info, 5);
 
-					data.util.assertOs(info, 'windows');
+					data.util.assertKoopaProperty(info, 'windows');
 				},
 
 				function Should_detect_safari_on_mac() {
 					var info = koopa(data.safari.macintosh);
 					verifyCommonValues(info, 5);
 
-					data.util.assertOs(info, 'macintosh');
+					data.util.assertKoopaProperty(info, 'macintosh');
 				},
 
 				function Should_parse_version() {

@@ -130,9 +130,12 @@
 	}
 
 	//mobile browser
-	if (match = /\b(?:(iP(?:ad|od|hone))|(Blackberry)|((?:MS)?IEMobile)|(Opera Mini))\b/i.exec(userAgent)) {
+	if (match = /\b(?:(iP(?:ad|od|hone))|(Blackberry)|(?:(?:MS)?(IEMobile))|(Opera Mini))\b/i.exec(userAgent)) {
 		koopa[toCamelCase(match[1] || match[2] || match[3] || match[4])] = true;
-		koopa.ios = koopa.ipad || koopa.iphone || koopa.ipod;
+		if (koopa.ipad || koopa.iphone || koopa.ipod) {
+			koopa.ios = true;
+		}
+
 		koopa.mobile = true;
 	}
 
