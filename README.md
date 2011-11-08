@@ -1,5 +1,6 @@
 Koopa
 ===========
+v1.0.0
 
 > A browser sniffing library by [Tommy Montgomery](http://tmont.com/)
 
@@ -20,20 +21,26 @@ Include koopa somewhere:
 (ab)Use it:
 
 ```javascript
-if (koopa.ie && koopa.version.major < 9) {
-  alert("You suck!");
-} else if (koopa.chrome && koopa.mac) {
-  alert("What a hipster...");
+var info = koopa();
+if (info.ie6) {
+	alert('wtfmate?');
+} else if (info.ie && info.version.major < 9) {
+  alert('You suck!');
+} else if (info.chrome && info.macintosh) {
+  alert('What a hipster...');
 }
 ```
 
 Or if you're using jQuery, it'll automatically extend the global `jQuery` object:
 
 ```javascript
-if ($.koopa.ie && $.koopa.version.major < 9) {
-  alert("You suck!");
-} else if ($.koopa.chrome && $.koopa.mac) {
-  alert("What a hipster...");
+var info = $.koopa();
+if (info.ie6) {
+	alert('wtfmate?');
+} else if (info.ie && info.version.major < 9) {
+  alert('You suck!');
+} else if (info.chrome && info.macintosh) {
+  alert('What a hipster...');
 }
 ```
 
@@ -53,9 +60,11 @@ var koopa = require('koopa');
 function handleRequest(request) {
   var userAgent = request.headers['User-Agent'];
   var info = koopa(userAgent);
-  if (info.ie && info.version.major < 9) {
+  if (info.ie6) {
+  	console.log('wtfmate?');
+  } else if (info.ie && info.version.major < 9) {
     console.log('You suck!');
-  } else if (info.chrome && info.mac) {
+  } else if (info.chrome && info.macintosh) {
     console.log('What a hipster...');
   }
 }
@@ -106,39 +115,169 @@ user agent string. To get the entire version string, use `koopa.version.toString
 }
 ```
 
-__koopa__ will also set some version specific properties for the browser. For example, if the
-user-agent string is `MSIE 6.0 (Windows NT)`, the following will be returned (note the `ie6`
-property):
+__koopa__ will also set some version specific properties for the browser and os. Here are a
+few examples:
 
+#### `Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1`
 ```javascript
 {
-  ie: true,
-  ie6: true,
-  windows: true,
-  cssPrefix: 'ms',
-  userAgent: 'MSIE 6.0 (Windows NT)'
-  version: {
-    major: '6',
-    minor: '0',
-    rest: ''
-  }
+	cssPrefix: 'moz',
+	firefox: true,
+	firefox7: true,
+	linux: true,
+	userAgent: 'Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1',
+	version: { 
+		major: '7',
+		minor: '0',
+		rest: '1'
+	}
 }
 ```
 
-A `koopa[browserName + majorVersion]` property is set if the major version can be parsed. Here's
-another example for the user-agent `Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1`:
-
+#### `Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.20) Gecko/20110804 Red Hat/3.6-2.el5 Firefox/3.6.20`
 ```javascript
 {
-  firefox: true,
-  firefox7: true,
-  linux: true,
-  cssPrefix: 'moz',
-  userAgent: 'Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1'
-  version: {
-    major: '7',
-    minor: '0',
-    rest: '1'
-  }
+	cssPrefix: 'moz',
+	firefox: true,
+	firefox3: true,
+	linux: true,
+	redHat: true,
+	redHat3: true,
+	redHat3_6_2: true,
+	redHat3_6_2_el5: true,
+	sixtyFourBit: true,
+	userAgent: 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.20) Gecko/20110804 Red Hat/3.6-2.el5 Firefox/3.6.20',
+	version: { 
+		major: '3',
+		minor: '6',
+		rest: '20'
+	}
+}
+```
+
+#### `Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2b5) Gecko/20091204 Firefox/3.6b5`
+```javascript
+{
+	cssPrefix: 'moz',
+	firefox: true,
+	firefox3: true,
+	sixtyFourBit: true,
+	windows: true,
+	windowsXp: true,
+	userAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2b5) Gecko/20091204 Firefox/3.6b5',
+	version: {
+		major: '3',
+		minor: '6b5',
+		rest: ''
+	}
+}
+```
+
+#### `Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 Firefox/4.0b8`
+```javascript
+{
+	cssPrefix: 'moz',
+	firefox: true,
+	firefox4: true,
+	macOsX: true,
+	macOsX10: true,
+	macOsX10_6: true,
+	macintosh: true,
+	sixtyFourBit: true,
+	snowLeopard: true,
+	userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 Firefox/4.0b8',
+	version: {
+		major: 4',
+		minor: '0b8',
+		rest: ''
+	}
+}
+```
+
+
+#### `Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10`
+```javascript
+{
+	cssPrefix: 'webkit',
+	ios: true,
+	ipad: true,
+	mobile: true,
+	safari: true,
+	safari4: true,
+	userAgent: 'Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10',
+	version: {
+		major: '4',
+		minor: '0',
+		rest: '4'
+	}
+}
+```
+
+#### `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.04 Chromium/15.0.871.0 Chrome/15.0.871.0 Safari/535.2`
+```javascript
+{
+	chrome: true,
+	chrome15: true,
+	cssPrefix: 'webkit',
+	linux: true,
+	sixtyFourBit: true,
+	ubuntu: true,
+	userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.04 Chromium/15.0.871.0 Chrome/15.0.871.0 Safari/535.2',
+	version: {
+		major: '15',
+		minor: '0',
+		rest: '871.0'
+	}
+}
+```
+
+#### `Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)`
+```javascript
+{
+	cssPrefix: 'ms',
+	ie: true,
+	ie9: true,
+	sixtyFourBit: true,
+	userAgent: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)',
+	version: {
+		major: '9',
+		minor: '0',
+		rest: ''
+	},
+	windows: true,
+	windows7: true
+}
+```
+
+#### `Opera/9.80 (X11; Linux i686; U; hu) Presto/2.9.168 Version/11.50`
+```javascript
+{
+	cssPrefix: 'o',
+	linux: true,
+	opera: true,
+	opera11: true,
+	userAgent: 'Opera/9.80 (X11; Linux i686; U; hu) Presto/2.9.168 Version/11.50',
+	version: {
+		major: '11',
+		minor: '50',
+		rest: ''
+	}
+}
+```
+
+#### `Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.337 Mobile Safari/534.1`
+```javascript
+{
+	blackberry: true,
+	cssPrefix: 'webkit',
+	mobile: true,
+	safari: true,
+	safari6: true,
+	userAgent: 'Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.337 Mobile Safari/534.1',
+	version: {
+		major: '6',
+		minor: '0',
+		rest: '0.337'
+	}
 }
 ```
