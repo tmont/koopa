@@ -187,7 +187,7 @@ few examples:
 	snowLeopard: true,
 	userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 Firefox/4.0b8',
 	version: {
-		major: 4',
+		major: '4',
 		minor: '0b8',
 		rest: ''
 	}
