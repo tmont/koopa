@@ -1,4 +1,4 @@
-var koopaDeref = typeof(module) === 'undefined' ? window.koopaDeref : require('../src/koopaDeref');
+var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
 var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
 
 function Mobile_tests() {
