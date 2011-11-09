@@ -16,7 +16,7 @@ Here is a bullet list of information it can provide:
 * OS names and versions
     * Windows, Mac and Linux
     * Code names, e.g. Windows XP, Snow Leopard, Jaunty, etc.
-* Mobile browsers and OS (IEMobile, Opera Mini, Safari, iThings, Blackberry, Android)
+* Mobile browsers and OS (IEMobile, Opera Mini, Safari, iThings, Blackberry, Android, Windows Phone)
 * Architecture information (64-bit)
 
 The `koopa` function takes one argument, a user-agent string. If no arguments are
