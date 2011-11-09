@@ -41,8 +41,6 @@
 		koopa[toCamelCase(match[1] || match[2] || match[3] || match[4])] = true;
 	}
 
-
-
 	//chrome identifies as safari
 	if (!koopa.chrome && /\bSafari\b/i.test(userAgent)) {
 		koopa.safari = true;

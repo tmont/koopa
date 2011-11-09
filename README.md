@@ -8,6 +8,19 @@ Licensed under the [WTFPL](http://sam.zoy.org/wtfpl/)
 
 Quick and Dirty
 ---------------
+__koopa__ is a pretty little thing that gives you information about a user agent.
+It can be used on IE6+, Firefox, Safari, Chrome, Opera and server-side with Node.
+Here is a bullet list of information it can provide:
+
+* Browser names and versions (IE, Chrome, Firefox, Safari, Opera)
+* OS names and versions
+** Windows, Mac and Linux
+** Code names, e.g. Windows XP, Snow Leopard, Jaunty, etc.
+* Mobile browsers and OS (IEMobile, Opera Mini, Safari, iThings, Blackberry, Android)
+* Architecture information (64-bit)
+
+The __`koopa`__ function takes one argument, a user-agent string. If no arguments are
+given and the `navigator` object is available, it will parse the client's user-agent.
 
 ### On the browser
 Include koopa somewhere:
@@ -19,25 +32,12 @@ Include koopa somewhere:
 (ab)Use it:
 
 ```javascript
-var info = koopa();
+var info = koopa(); //if jQuery is available, use $.koopa() instead
 if (info.ie6) {
 	alert('wtfmate?');
 } else if (info.ie && info.version.major < 9) {
   alert('You suck!');
-} else if (info.chrome && info.macintosh) {
-  alert('What a hipster...');
-}
-```
-
-Or if you're using jQuery, it'll automatically extend the global `jQuery` object:
-
-```javascript
-var info = $.koopa();
-if (info.ie6) {
-	alert('wtfmate?');
-} else if (info.ie && info.version.major < 9) {
-  alert('You suck!');
-} else if (info.chrome && info.macintosh) {
+} else if (info.chrome && info.macOsX) {
   alert('What a hipster...');
 }
 ```
@@ -68,7 +68,8 @@ function handleRequest(request) {
 }
 ```
 
-Or use it as a debugging tool on the command line:
+Or use it to inspect your server logs on the command line. You know, in case it's 1994
+and you're not using Google Analytics.
 
 ```bash
 sudo tail -n 1 /var/log/nginx/access.log | php -r "echo end(fgetcsv(STDIN, 0, ' '));" | koopa
