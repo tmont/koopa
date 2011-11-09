@@ -14,12 +14,12 @@ Here is a bullet list of information it can provide:
 
 * Browser names and versions (IE, Chrome, Firefox, Safari, Opera)
 * OS names and versions
-** Windows, Mac and Linux
-** Code names, e.g. Windows XP, Snow Leopard, Jaunty, etc.
+    * Windows, Mac and Linux
+    * Code names, e.g. Windows XP, Snow Leopard, Jaunty, etc.
 * Mobile browsers and OS (IEMobile, Opera Mini, Safari, iThings, Blackberry, Android)
 * Architecture information (64-bit)
 
-The __`koopa`__ function takes one argument, a user-agent string. If no arguments are
+The `koopa` function takes one argument, a user-agent string. If no arguments are
 given and the `navigator` object is available, it will parse the client's user-agent.
 
 ### On the browser
