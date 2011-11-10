@@ -1,4 +1,4 @@
-Koopa 1.0.1
+Koopa 1.0.2
 ===========
 A browser sniffing library by [Tommy Montgomery](http://tmont.com/)
 
