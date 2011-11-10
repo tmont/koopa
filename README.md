@@ -166,7 +166,6 @@ few examples:
 	cssPrefix: 'moz',
 	firefox: true,
 	firefox3: true,
-	sixtyFourBit: true,
 	windows: true,
 	windowsXp: true,
 	userAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2b5) Gecko/20091204 Firefox/3.6b5',
@@ -198,7 +197,6 @@ few examples:
 	}
 }
 ```
-
 
 #### Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10
 ```javascript
