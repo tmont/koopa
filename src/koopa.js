@@ -66,18 +66,19 @@
 	}
 
 	if (match = /\bMac OS X ([\w.]+)?\b/i.exec(userAgent)) {
+		var prefix = 'macOsX';
 		koopa.macintosh = true;
-		koopa.macOsX = true;
+		koopa[prefix]= true;
 		if (match[1]) {
 			if (match[1].indexOf('_') === -1) {
 				match[1] = match[1].split('.');
 			} else {
 				match[1] = match[1].split('_');
 			}
-			koopa['macOsX' + match[1].join('_')] = true;
-			koopa['macOsX' + match[1][0]] = true;
+			koopa[prefix + match[1].join('_')] = true;
+			koopa[prefix + match[1][0]] = true;
 			if (match[1][1]) {
-				koopa['macOsX' + match[1][0] + '_' + match[1][1]] = true;
+				koopa[prefix + match[1][0] + '_' + match[1][1]] = true;
 				if (match[1][1] >= 5) {
 					koopa.sixtyFourBit = true;
 				}
