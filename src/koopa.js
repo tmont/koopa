@@ -13,9 +13,15 @@
 		userAgent = window.navigator.userAgent.toString();
 	}
 
-	var koopa = {
-		userAgent: userAgent
-	};
+	var version = '',
+		versionParts,
+		match,
+		temp,
+		prefix,
+		distro,
+		koopa = {
+			userAgent: userAgent
+		};
 
 	function parseVersion(regex, name) {
 		var version = (regex.exec(userAgent) || [])[1] || '';
@@ -36,7 +42,6 @@
 	}
 
 	//browser
-	var match, temp;
 	if (match = /\b(?:MS(IE)|(Firefox)|(Chrome)|(Opera))\b/i.exec(userAgent)) {
 		koopa[toCamelCase(match[1] || match[2] || match[3] || match[4])] = true;
 	}
@@ -66,7 +71,7 @@
 	}
 
 	if (match = /\bMac OS X ([\w.]+)?\b/i.exec(userAgent)) {
-		var prefix = 'macOsX';
+		prefix = 'macOsX';
 		koopa.macintosh = true;
 		koopa[prefix]= true;
 		if (match[1]) {
@@ -100,7 +105,7 @@
 	//specific linux distro
 	if (match = /\bFreeBSD|[KX]?Ubuntu|Red Hat|Linux Mint|SUSE|Gentoo|CentOS|Fedora|Debian\b/i.exec(userAgent)) {
 		koopa.linux = true;
-		var distro = toCamelCase(match[0]);
+		distro = toCamelCase(match[0]);
 		koopa[distro] = true;
 		if (temp = /\b([kx]?ubuntu|Linux Mint)\/(.+?) \((\w+?)\)/i.exec(userAgent)) {
 			koopa[toCamelCase(temp[1] + temp[2])] = true;
@@ -142,7 +147,6 @@
 		koopa.mobile = true;
 	}
 
-	var version = '';
 	if (koopa.ie) {
 		version = parseVersion(/\bMSIE ([a-z\d.]+)\b/i, 'ie');
 		koopa.cssPrefix = 'ms';
@@ -165,7 +169,7 @@
 		koopa.cssPrefix = 'o';
 	}
 
-	var versionParts = version.split('.');
+	versionParts = version.split('.');
 	koopa.version = {
 		major: versionParts[0],
 		minor: versionParts[1] || '',
