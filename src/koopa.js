@@ -16,7 +16,7 @@
 	var koopa = {
 		userAgent: userAgent
 	};
-	
+
 	function parseVersion(regex, name) {
 		var version = (regex.exec(userAgent) || [])[1] || '';
 		var majorVersion = version.split('.')[0];
@@ -168,7 +168,7 @@
 	var versionParts = version.split('.');
 	koopa.version = {
 		major: versionParts[0],
-		minor: versionParts[1],
+		minor: versionParts[1] || '',
 		rest: versionParts.slice(2).join('.'),
 		toString: function() {
 			return version;
