@@ -7,8 +7,6 @@ function Browser_tests() {
 			function verifyCommonValues(info, majorVersion) {
 				data.util.assertKoopaProperty(info, 'firefox');
 				data.util.assertKoopaProperty(info, 'firefox' + majorVersion);
-				Assert.that(info, Has.key('cssPrefix'));
-				Assert.that(info, Has.property('cssPrefix').equalTo('moz'));
 			}
 
 			return [
@@ -48,8 +46,6 @@ function Browser_tests() {
 			function verifyCommonValues(info, majorVersion) {
 				data.util.assertKoopaProperty(info, 'safari');
 				data.util.assertKoopaProperty(info, 'safari' + majorVersion);
-				Assert.that(info, Has.key('cssPrefix'));
-				Assert.that(info, Has.property('cssPrefix').equalTo('webkit'));
 			}
 
 			return [
@@ -81,8 +77,6 @@ function Browser_tests() {
 			function verifyCommonValues(info, majorVersion) {
 				data.util.assertKoopaProperty(info, 'ie');
 				data.util.assertKoopaProperty(info, 'ie' + majorVersion);
-				Assert.that(info, Has.key('cssPrefix'));
-				Assert.that(info, Has.property('cssPrefix').equalTo('ms'));
 			}
 
 			return [
@@ -107,8 +101,6 @@ function Browser_tests() {
 				data.util.assertKoopaProperty(info, 'chrome');
 				data.util.assertKoopaProperty(info, 'chrome' + majorVersion);
 				Assert.that(info, Has.no.key('safari')); //should never identify as safari
-				Assert.that(info, Has.key('cssPrefix'));
-				Assert.that(info, Has.property('cssPrefix').equalTo('webkit'));
 			}
 
 			return [
@@ -140,8 +132,6 @@ function Browser_tests() {
 			function verifyCommonValues(info, majorVersion) {
 				data.util.assertKoopaProperty(info, 'opera');
 				data.util.assertKoopaProperty(info, 'opera' + majorVersion);
-				Assert.that(info, Has.key('cssPrefix'));
-				Assert.that(info, Has.property('cssPrefix').equalTo('o'));
 			}
 
 			return [
