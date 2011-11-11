@@ -103,9 +103,9 @@
 	}
 
 	//specific linux distro
-	if (match = /\bFreeBSD|[KX]?Ubuntu|Red Hat|Linux Mint|SUSE|Gentoo|CentOS|Fedora|Debian\b/i.exec(userAgent)) {
+	if (match = /\b(FreeBSD|[KX]?Ubuntu|Red Hat|Linux Mint|SUSE|Gentoo|CentOS|Fedora|Debian)\b/i.exec(userAgent)) {
 		koopa.linux = true;
-		distro = toCamelCase(match[0]);
+		distro = toCamelCase(match[1]);
 		koopa[distro] = true;
 		if (temp = /\b([kx]?ubuntu|Linux Mint)\/(.+?) \((\w+?)\)/i.exec(userAgent)) {
 			koopa[toCamelCase(temp[1] + temp[2])] = true;
@@ -121,7 +121,7 @@
 			}
 		}
 
-		if (/\bx86_64|amd64\b/i.test(userAgent)) {
+		if (/\b(?:x86_64|amd64)\b/i.test(userAgent)) {
 			koopa.sixtyFourBit = true;
 		}
 	}
