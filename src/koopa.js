@@ -41,6 +41,18 @@
 		return newString;
 	}
 
+	function setVersionParts(prefix, versions, limit) {
+		var versionString = '';
+		var len = Math.min(versions.length, limit);
+		for (var i = 0; i < len; i++) {
+			if (i > 0) {
+				versionString += '_';
+			}
+			versionString += toCamelCase(versions[i]);
+			koopa[prefix + versionString] = true;
+		}
+	}
+
 	//browser
 	if (match = /\b(?:MS(IE)|(Firefox)|(Chrome)|(Opera))\b/i.exec(userAgent)) {
 		koopa[toCamelCase(match[1] || match[2] || match[3] || match[4])] = true;
@@ -147,6 +159,7 @@
 		koopa.mobile = true;
 	}
 
+	//browser
 	if (koopa.ie) {
 		version = parseVersion(/\bMSIE ([a-z\d.]+)\b/i, 'ie');
 	} else if (koopa.firefox) {
@@ -161,6 +174,13 @@
 			//older versions of opera
 			version = parseVersion(/\bOpera\/([a-z\d.]+)\b/i, 'opera');
 		}
+	}
+
+	//rendering engine
+	if (match = /\b(?:(Trident)|(Gecko)|Apple(WebKit)|(Presto))\/([\w.]+)\b/i.exec(userAgent)) {
+		prefix = toCamelCase(match[1] || match[2] || match[3] || match[4]);
+		koopa[prefix] = true;
+		setVersionParts(prefix, match[5].split('.'), 2);
 	}
 
 	versionParts = version.split('.');
