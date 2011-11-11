@@ -177,7 +177,7 @@
 	}
 
 	//rendering engine
-	if (match = /\b(?:(Trident)|(Gecko)|Apple(WebKit)|(Presto))\/([\w.]+)\b/i.exec(userAgent)) {
+	if (match = /\b(?:(Trident)|(Gecko)|Apple(WebKit)|(Presto))\/(.+?)(?:\s|$|;|\))/i.exec(userAgent)) {
 		prefix = toCamelCase(match[1] || match[2] || match[3] || match[4]);
 		koopa[prefix] = true;
 		setVersionParts(prefix, match[5].split('.'), 2);

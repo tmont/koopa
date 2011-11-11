@@ -28,7 +28,14 @@ function Engine_tests() {
 			data.util.assertKoopaProperty(info, 'presto');
 			data.util.assertKoopaProperty(info, 'presto2');
 			data.util.assertKoopaProperty(info, 'presto2_6');
-		}
+		},
+
+		function Should_parse_engine_version_with_non_numeric_version() {
+			var info = koopaDeref(data.engine.nonNumericVersion);
+			data.util.assertKoopaProperty(info, 'webkit');
+			data.util.assertKoopaProperty(info, 'webkit534');
+			data.util.assertKoopaProperty(info, 'webkit534_1_');
+		},
 	];
 }
 
