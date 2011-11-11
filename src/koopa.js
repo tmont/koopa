@@ -149,24 +149,18 @@
 
 	if (koopa.ie) {
 		version = parseVersion(/\bMSIE ([a-z\d.]+)\b/i, 'ie');
-		koopa.cssPrefix = 'ms';
 	} else if (koopa.firefox) {
 		version = parseVersion(/\bFirefox\/([a-z\d.]+)\b/i, 'firefox');
-		koopa.cssPrefix = 'moz';
 	} else if (koopa.chrome) {
 		version = parseVersion(/\bChrome\/([a-z\d.]+)\b/i, 'chrome');
-		koopa.cssPrefix = 'webkit';
 	} else if (koopa.safari) {
 		version = parseVersion(/\bVersion\/([a-z\d.]+)\b/i, 'safari');
-		koopa.cssPrefix = 'webkit';
 	} else if (koopa.opera) {
 		version = parseVersion(/\bVersion\/([a-z\d.]+)\b/i, 'opera');
 		if (!version) {
 			//older versions of opera
 			version = parseVersion(/\bOpera\/([a-z\d.]+)\b/i, 'opera');
 		}
-
-		koopa.cssPrefix = 'o';
 	}
 
 	versionParts = version.split('.');

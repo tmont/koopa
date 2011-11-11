@@ -26,7 +26,6 @@ function help() {
   "windowsXp": true,\n\
   "sixtyFourBit": true,\n\
   "firefox3": true,\n\
-  "cssPrefix": "moz",\n\
   "version": {\n\
     "major": "3",\n\
     "minor": "6b5",\n\

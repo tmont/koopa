@@ -126,7 +126,6 @@ few examples:
 #### Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1
 ```javascript
 {
-	cssPrefix: 'moz',
 	firefox: true,
 	firefox7: true,
 	linux: true,
@@ -142,7 +141,6 @@ few examples:
 #### Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.20) Gecko/20110804 Red Hat/3.6-2.el5 Firefox/3.6.20
 ```javascript
 {
-	cssPrefix: 'moz',
 	firefox: true,
 	firefox3: true,
 	linux: true,
@@ -163,7 +161,6 @@ few examples:
 #### Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2b5) Gecko/20091204 Firefox/3.6b5
 ```javascript
 {
-	cssPrefix: 'moz',
 	firefox: true,
 	firefox3: true,
 	windows: true,
@@ -180,7 +177,6 @@ few examples:
 #### Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 Firefox/4.0b8
 ```javascript
 {
-	cssPrefix: 'moz',
 	firefox: true,
 	firefox4: true,
 	macOsX: true,
@@ -201,7 +197,6 @@ few examples:
 #### Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10
 ```javascript
 {
-	cssPrefix: 'webkit',
 	ios: true,
 	ipad: true,
 	mobile: true,
@@ -221,7 +216,6 @@ few examples:
 {
 	chrome: true,
 	chrome15: true,
-	cssPrefix: 'webkit',
 	linux: true,
 	sixtyFourBit: true,
 	ubuntu: true,
@@ -237,7 +231,6 @@ few examples:
 #### Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)
 ```javascript
 {
-	cssPrefix: 'ms',
 	ie: true,
 	ie9: true,
 	sixtyFourBit: true,
@@ -255,7 +248,6 @@ few examples:
 #### Opera/9.80 (X11; Linux i686; U; hu) Presto/2.9.168 Version/11.50
 ```javascript
 {
-	cssPrefix: 'o',
 	linux: true,
 	opera: true,
 	opera11: true,
@@ -272,7 +264,6 @@ few examples:
 ```javascript
 {
 	blackberry: true,
-	cssPrefix: 'webkit',
 	mobile: true,
 	safari: true,
 	safari6: true,
