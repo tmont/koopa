@@ -20,7 +20,29 @@
 		prefix,
 		distro,
 		koopa = {
-			userAgent: userAgent
+			userAgent: userAgent,
+			os: {
+				family: '',
+				name: '',
+				distro: '',
+				version: {}
+			},
+			browser: {
+				name: '',
+				version: {
+					major: '',
+					minor: '',
+					rest: ''
+				}
+			},
+			engine: {
+				name: '',
+				version: {
+					major: '',
+					minor: '',
+					rest: ''
+				}
+			}
 		};
 
 	function parseVersion(regex, name) {
@@ -28,6 +50,19 @@
 		var majorVersion = version.split('.')[0];
 		majorVersion && (koopa[name + majorVersion] = true);
 		return version;
+	}
+
+	function getVersionInfo(versionString, delimiter) {
+		delimiter = delimiter || '.';
+		var versionParts = versionString.split(delimiter);
+		return {
+			major: versionParts[0] || '',
+			minor: versionParts[1] || '',
+			rest: versionParts.slice(2).join(delimiter),
+			toString: function() {
+				return versionString;
+			}
+		};
 	}
 
 	function toCamelCase(string) {
@@ -53,27 +88,45 @@
 		}
 	}
 
+	function setVersionInfo(prefix, version) {
+		if (version.major) {
+			koopa[prefix + version.major] = true;
+			if (version.minor) {
+				koopa[prefix + version.major + '_' + version.minor] = true;
+			}
+		}
+
+		var versionString = version.toString();
+		if (versionString) {
+			koopa[prefix + versionString.replace(/\W/g, '_')] = true;
+		}
+	}
+
 	//browser
-	if (match = /\b(?:MS(IE)|(Firefox)|(Chrome)|(Opera))\b/i.exec(userAgent)) {
+	if (match = /\b((?:MS)IE|Firefox|Chrome|Opera)\b/i.exec(userAgent)) {
 		koopa[toCamelCase(match[1] || match[2] || match[3] || match[4])] = true;
+		koopa.browser.name = match[1] || match[2] || match[3] || match[4];
 	}
 
 	//chrome identifies as safari
 	if (!koopa.chrome && /\bSafari\b/i.test(userAgent)) {
 		koopa.safari = true;
+		koopa.browser.name = 'Safari';
 	}
 
 	//specific os
 	if (match = /\bWindows NT ([\d.]+)?\b/i.exec(userAgent)) {
 		koopa.windows = true;
-		if (match[1]) {
-			temp = match[1].split('.').slice(0, 2).join('.');
+		koopa.os.family = 'windows';
+		koopa.os.version = getVersionInfo(match[1], '.');
+		temp = koopa.os.version.major + '.' + koopa.os.version.minor;
+		if (temp !== '.') {
 			switch (temp) {
-				case '6.1': koopa.windows7 = true; break;
-				case '6.0': koopa.windowsVista = true; break;
-				case '5.1': koopa.windowsXp = true; break;
-				case '6.2': koopa.windows8 = true; break;
-				case '5.0': koopa.windows2000 = true; break;
+				case '6.1': koopa.windows7     = true; koopa.os.name = 'Windows 7';     break;
+				case '6.0': koopa.windowsVista = true; koopa.os.name = 'Windows Vista'; break;
+				case '5.1': koopa.windowsXp    = true; koopa.os.name = 'Windows XP';    break;
+				case '6.2': koopa.windows8     = true; koopa.os.name = 'Windows 8';     break;
+				case '5.0': koopa.windows2000  = true; koopa.os.name = 'Windows 2000';  break;
 			}
 		}
 
@@ -85,30 +138,26 @@
 	if (match = /\bMac OS X ([\w.]+)?\b/i.exec(userAgent)) {
 		prefix = 'macOsX';
 		koopa.macintosh = true;
+		koopa.os.family = 'Macintosh';
+
 		koopa[prefix]= true;
 		if (match[1]) {
-			if (match[1].indexOf('_') === -1) {
-				match[1] = match[1].split('.');
-			} else {
-				match[1] = match[1].split('_');
-			}
-			koopa[prefix + match[1].join('_')] = true;
-			koopa[prefix + match[1][0]] = true;
-			if (match[1][1]) {
-				koopa[prefix + match[1][0] + '_' + match[1][1]] = true;
-				if (match[1][1] >= 5) {
+			koopa.os.version = getVersionInfo(match[1], match[1].indexOf('_') === -1 ? '.' : '_');
+			setVersionInfo(prefix, koopa.os.version);
+			if (koopa.os.version.minor) {
+				if (koopa.os.version.minor >= 5) {
 					koopa.sixtyFourBit = true;
 				}
 
-				switch (match[1][1]) {
-					case '7': koopa.lion = true; break;
-					case '6': koopa.snowLeopard = true; break;
-					case '5': koopa.leopard = true; break;
-					case '4': koopa.tiger = true; break;
-					case '3': koopa.panther = true; break;
-					case '2': koopa.jaguar = true; break;
-					case '1': koopa.puma = true; break;
-					case '0': koopa.cheetah = true; break;
+				switch (koopa.os.version.minor) {
+					case '7': koopa.lion        = true; koopa.os.name = 'Lion';         break;
+					case '6': koopa.snowLeopard = true; koopa.os.name = 'Snow Leopard'; break;
+					case '5': koopa.leopard     = true; koopa.os.name = 'Leopard';      break;
+					case '4': koopa.tiger       = true; koopa.os.name = 'Tiger';        break;
+					case '3': koopa.panther     = true; koopa.os.name = 'Panther';      break;
+					case '2': koopa.jaguar      = true; koopa.os.name = 'Jaguar';       break;
+					case '1': koopa.puma        = true; koopa.os.name = 'Puma';         break;
+					case '0': koopa.cheetah     = true; koopa.os.name = 'Cheetah';      break;
 				}
 			}
 		}
@@ -117,11 +166,17 @@
 	//specific linux distro
 	if (match = /\b(FreeBSD|[KX]?Ubuntu|Red Hat|Linux Mint|SUSE|Gentoo|CentOS|Fedora|Debian)\b/i.exec(userAgent)) {
 		koopa.linux = true;
+		koopa.os.family = 'Linux';
+		koopa.os.distro = match[1];
+		
 		distro = toCamelCase(match[1]);
 		koopa[distro] = true;
 		if (temp = /\b([kx]?ubuntu|Linux Mint)\/(.+?) \((\w+?)\)/i.exec(userAgent)) {
-			koopa[toCamelCase(temp[1] + temp[2])] = true;
+			koopa.os.version = getVersionInfo(temp[2], '.');
+			setVersionInfo(temp[1], koopa.os.version);
+			koopa[distro + toCamelCase(temp[2])] = true;
 			koopa[toCamelCase(temp[3])] = true;
+			koopa.os.name = temp[3]; //Jaunty, Gloria, etc.
 		} else if (temp = /\b(Red Hat|SUSE|CentOS|Fedora|Debian)[\/\-]([^)\s]+)/i.exec(userAgent)) {
 			temp[2] = temp[2].split('.');
 			koopa[distro + toCamelCase(temp[2].join('_'))] = true;
@@ -141,6 +196,7 @@
 	//catch-all os
 	if (!koopa.windows && !koopa.macintosh && !koopa.linux && (match = /\b(Linux|Windows|Macintosh)\b/i.exec(userAgent))) {
 		koopa[toCamelCase(match[1])] = true;
+		koopa.os.family = match[1];
 	}
 
 	//mobile os
