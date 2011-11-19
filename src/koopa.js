@@ -14,7 +14,6 @@
 	}
 
 	var version = '',
-		versionParts,
 		match,
 		temp,
 		prefix,
