@@ -161,7 +161,7 @@
 			setVersionInfo(distro, koopa.os.version);
 			koopa[toCamelCase(temp[3])] = true;
 			koopa.os.name = temp[3]; //Jaunty, Gloria, etc.
-		} else if (temp = /\b(Red Hat|SUSE|CentOS|Fedora|Debian)[\/\-]([^)\s]+)/i.exec(userAgent)) {
+		} else if (temp = /\b(Red Hat|SUSE|CentOS|Fedora|Debian)[\/-]([^)\s]+)/i.exec(userAgent)) {
 			koopa.os.version = getVersionInfo(temp[2], '.');
 			setVersionInfo(distro, koopa.os.version);
 		}
