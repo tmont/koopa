@@ -76,18 +76,6 @@
 		return newString;
 	}
 
-	function setVersionParts(prefix, versions, limit) {
-		var versionString = '';
-		var len = Math.min(versions.length, limit);
-		for (var i = 0; i < len; i++) {
-			if (i > 0) {
-				versionString += '_';
-			}
-			versionString += toCamelCase(versions[i]);
-			koopa[prefix + versionString] = true;
-		}
-	}
-
 	function setVersionInfo(prefix, version) {
 		if (version.major) {
 			koopa[prefix + version.major] = true;
@@ -226,10 +214,12 @@
 	}
 
 	//rendering engine
-	if (match = /\b(?:(Trident)|(Gecko)|Apple(WebKit)|(Presto))\/(.+?)(?:\s|$|;|\))/i.exec(userAgent)) {
-		prefix = toCamelCase(match[1] || match[2] || match[3] || match[4]);
+	if (match = /\b(Trident|Gecko|(?:Apple)WebKit|Presto)\/(.+?)(?:\s|$|;|\))/i.exec(userAgent)) {
+		prefix = toCamelCase(match[1]);
 		koopa[prefix] = true;
-		setVersionParts(prefix, match[5].split('.'), 2);
+		koopa.engine.name = prefix;
+		koopa.engine.version = getVersionInfo(match[2], '.');
+		setVersionInfo(prefix, koopa.engine.version);
 	}
 
 	versionParts = version.split('.');
