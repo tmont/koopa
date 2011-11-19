@@ -91,8 +91,13 @@
 	}
 
 	//browser
-	if (match = /\b((?:MS)IE|Firefox|Chrome|Opera)\b/i.exec(userAgent)) {
-		koopa[toCamelCase(match[1] || match[2] || match[3] || match[4])] = true;
+	if (match = /\b(MSIE|Firefox|Chrome|Opera)\b/i.exec(userAgent)) {
+		prefix = toCamelCase(match[1]);
+		if (prefix === 'msie') {
+			prefix = 'ie';
+		}
+		
+		koopa[prefix] = true;
 		koopa.browser.name = match[1] || match[2] || match[3] || match[4];
 	}
 
@@ -214,8 +219,11 @@
 	}
 
 	//rendering engine
-	if (match = /\b(Trident|Gecko|(?:Apple)WebKit|Presto)\/(.+?)(?:\s|$|;|\))/i.exec(userAgent)) {
+	if (match = /\b(Trident|Gecko|AppleWebKit|Presto)\/(.+?)(?:\s|$|;|\))/i.exec(userAgent)) {
 		prefix = toCamelCase(match[1]);
+		if (prefix === 'applewebkit') {
+			prefix = 'webkit';
+		}
 		koopa[prefix] = true;
 		koopa.engine.name = prefix;
 		koopa.engine.version = getVersionInfo(match[2], '.');
