@@ -173,19 +173,12 @@
 		koopa[distro] = true;
 		if (temp = /\b([kx]?ubuntu|Linux Mint)\/(.+?) \((\w+?)\)/i.exec(userAgent)) {
 			koopa.os.version = getVersionInfo(temp[2], '.');
-			setVersionInfo(temp[1], koopa.os.version);
-			koopa[distro + toCamelCase(temp[2])] = true;
+			setVersionInfo(distro, koopa.os.version);
 			koopa[toCamelCase(temp[3])] = true;
 			koopa.os.name = temp[3]; //Jaunty, Gloria, etc.
 		} else if (temp = /\b(Red Hat|SUSE|CentOS|Fedora|Debian)[\/\-]([^)\s]+)/i.exec(userAgent)) {
-			temp[2] = temp[2].split('.');
-			koopa[distro + toCamelCase(temp[2].join('_'))] = true;
-			if (temp[2][0]) {
-				koopa[distro + toCamelCase(temp[2][0])] = true;
-				if (temp[2][1]) {
-					koopa[distro + toCamelCase(temp[2][0] + '_' + temp[2][1])] = true;
-				}
-			}
+			koopa.os.version = getVersionInfo(temp[2], '.');
+			setVersionInfo(distro, koopa.os.version);
 		}
 
 		if (/\b(?:x86_64|amd64)\b/i.test(userAgent)) {
