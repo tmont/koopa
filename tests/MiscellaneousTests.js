@@ -12,13 +12,14 @@ function Miscellaneous_tests() {
 			Assert.that(info, Has.key('userAgent'));
 			Assert.that(info.userAgent, Is.undefined());
 
-			Assert.that(info, Has.key('version'));
-			Assert.that(info.version, Has.key('major'));
-			Assert.that(info.version, Has.property('major').identicalTo(''));
-			Assert.that(info.version, Has.key('minor'));
-			Assert.that(info.version, Has.property('minor').identicalTo(''));
-			Assert.that(info.version, Has.key('rest'));
-			Assert.that(info.version, Has.property('rest').identicalTo(''));
+			Assert.that(info, Has.key('browser'));
+			Assert.that(info.browser, Has.key('version'));
+			Assert.that(info.browser.version, Has.key('major'));
+			Assert.that(info.browser.version, Has.property('major').identicalTo(''));
+			Assert.that(info.browser.version, Has.key('minor'));
+			Assert.that(info.browser.version, Has.property('minor').identicalTo(''));
+			Assert.that(info.browser.version, Has.key('rest'));
+			Assert.that(info.browser.version, Has.property('rest').identicalTo(''));
 		}
 	];
 }

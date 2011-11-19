@@ -25,19 +25,19 @@ function Browser_tests() {
 				function Should_parse_version() {
 					verifyCommonValues(koopaDeref(data.firefox.threePartVersion), 7);
 
-					Assert.that(koopaDeref(data.firefox.threePartVersion).version, Has.property('major').equalTo(7));
-					Assert.that(koopaDeref(data.firefox.threePartVersion).version, Has.property('minor').equalTo(0));
-					Assert.that(koopaDeref(data.firefox.threePartVersion).version, Has.property('rest').equalTo(1));
-					Assert.that(koopaDeref(data.firefox.threePartVersion).version.toString(), Is.equalTo('7.0.1'));
+					Assert.that(koopaDeref(data.firefox.threePartVersion).browser.version, Has.property('major').equalTo(7));
+					Assert.that(koopaDeref(data.firefox.threePartVersion).browser.version, Has.property('minor').equalTo(0));
+					Assert.that(koopaDeref(data.firefox.threePartVersion).browser.version, Has.property('rest').equalTo(1));
+					Assert.that(koopaDeref(data.firefox.threePartVersion).browser.version.toString(), Is.equalTo('7.0.1'));
 				},
 
 				function Should_parse_version_with_non_numeric_values() {
 					verifyCommonValues(koopaDeref(data.firefox.nonNumericVersion), 6);
 
-					Assert.that(koopaDeref(data.firefox.nonNumericVersion).version, Has.property('major').equalTo(6));
-					Assert.that(koopaDeref(data.firefox.nonNumericVersion).version, Has.property('minor').equalTo('0a2'));
-					Assert.that(koopaDeref(data.firefox.nonNumericVersion).version, Has.property('rest').empty());
-					Assert.that(koopaDeref(data.firefox.nonNumericVersion).version.toString(), Is.equalTo('6.0a2'));
+					Assert.that(koopaDeref(data.firefox.nonNumericVersion).browser.version, Has.property('major').equalTo(6));
+					Assert.that(koopaDeref(data.firefox.nonNumericVersion).browser.version, Has.property('minor').equalTo('0a2'));
+					Assert.that(koopaDeref(data.firefox.nonNumericVersion).browser.version, Has.property('rest').empty());
+					Assert.that(koopaDeref(data.firefox.nonNumericVersion).browser.version.toString(), Is.equalTo('6.0a2'));
 				}
 			];
 		},
@@ -65,10 +65,10 @@ function Browser_tests() {
 					var info = koopaDeref(data.safari.windows);
 					verifyCommonValues(info, 5);
 
-					Assert.that(info.version, Has.property('major').equalTo(5));
-					Assert.that(info.version, Has.property('minor').equalTo(0));
-					Assert.that(info.version, Has.property('rest').equalTo(4));
-					Assert.that(info.version.toString(), Is.equalTo('5.0.4'));
+					Assert.that(info.browser.version, Has.property('major').equalTo(5));
+					Assert.that(info.browser.version, Has.property('minor').equalTo(0));
+					Assert.that(info.browser.version, Has.property('rest').equalTo(4));
+					Assert.that(info.browser.version.toString(), Is.equalTo('5.0.4'));
 				}
 			];
 		},
@@ -88,10 +88,10 @@ function Browser_tests() {
 					var info = koopaDeref(data.ie.ie8);
 					verifyCommonValues(info, 8);
 
-					Assert.that(info.version, Has.property('major').equalTo(8));
-					Assert.that(info.version, Has.property('minor').equalTo(0));
-					Assert.that(info.version, Has.property('rest').empty());
-					Assert.that(info.version.toString(), Is.equalTo('8.0'));
+					Assert.that(info.browser.version, Has.property('major').equalTo(8));
+					Assert.that(info.browser.version, Has.property('minor').equalTo(0));
+					Assert.that(info.browser.version, Has.property('rest').empty());
+					Assert.that(info.browser.version.toString(), Is.equalTo('8.0'));
 				}
 			];
 		},
@@ -120,10 +120,10 @@ function Browser_tests() {
 					var info = koopaDeref(data.chrome.mac);
 					verifyCommonValues(info, 15);
 
-					Assert.that(info.version, Has.property('major').equalTo(15));
-					Assert.that(info.version, Has.property('minor').equalTo(0));
-					Assert.that(info.version, Has.property('rest').equalTo('874.54'));
-					Assert.that(info.version.toString(), Is.equalTo('15.0.874.54'));
+					Assert.that(info.browser.version, Has.property('major').equalTo(15));
+					Assert.that(info.browser.version, Has.property('minor').equalTo(0));
+					Assert.that(info.browser.version, Has.property('rest').equalTo('874.54'));
+					Assert.that(info.browser.version.toString(), Is.equalTo('15.0.874.54'));
 				}
 			];
 		},
@@ -150,19 +150,19 @@ function Browser_tests() {
 				function Should_parse_version() {
 					var info = koopaDeref(data.opera.mac);
 
-					Assert.that(info.version, Has.property('major').equalTo(10));
-					Assert.that(info.version, Has.property('minor').equalTo(61));
-					Assert.that(info.version, Has.property('rest').empty());
-					Assert.that(info.version.toString(), Is.equalTo('10.61'));
+					Assert.that(info.browser.version, Has.property('major').equalTo(10));
+					Assert.that(info.browser.version, Has.property('minor').equalTo(61));
+					Assert.that(info.browser.version, Has.property('rest').empty());
+					Assert.that(info.browser.version.toString(), Is.equalTo('10.61'));
 				},
 
 				function Should_parse_old_version() {
 					var info = koopaDeref(data.opera.old);
 
-					Assert.that(info.version, Has.property('major').equalTo(9));
-					Assert.that(info.version, Has.property('minor').equalTo(63));
-					Assert.that(info.version, Has.property('rest').empty());
-					Assert.that(info.version.toString(), Is.equalTo('9.63'));
+					Assert.that(info.browser.version, Has.property('major').equalTo(9));
+					Assert.that(info.browser.version, Has.property('minor').equalTo(63));
+					Assert.that(info.browser.version, Has.property('rest').empty());
+					Assert.that(info.browser.version.toString(), Is.equalTo('9.63'));
 				}
 			];
 		}

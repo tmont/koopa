@@ -45,13 +45,6 @@
 			}
 		};
 
-	function parseVersion(regex, name) {
-		var version = (regex.exec(userAgent) || [])[1] || '';
-		var majorVersion = version.split('.')[0];
-		majorVersion && (koopa[name + majorVersion] = true);
-		return version;
-	}
-
 	function getVersionInfo(versionString, delimiter) {
 		delimiter = delimiter || '.';
 		var versionParts = versionString.split(delimiter);
@@ -203,18 +196,34 @@
 
 	//browser
 	if (koopa.ie) {
-		version = parseVersion(/\bMSIE ([a-z\d.]+)\b/i, 'ie');
-	} else if (koopa.firefox) {
-		version = parseVersion(/\bFirefox\/([a-z\d.]+)\b/i, 'firefox');
-	} else if (koopa.chrome) {
-		version = parseVersion(/\bChrome\/([a-z\d.]+)\b/i, 'chrome');
+		if (match = /\bMSIE ([a-z\d.]+)\b/i.exec(userAgent)) {
+			koopa.browser.version = getVersionInfo(match[1], '.');
+			koopa['ie' + koopa.browser.version.major] = true;
+		}
+	} else if (koopa.firefox || koopa.chrome) {
+		if (match = /\b(Firefox|Chrome)\/([a-z\d.]+)\b/i.exec(userAgent)) {
+			koopa.browser.version = getVersionInfo(match[2], '.');
+			koopa[toCamelCase(match[1]) + koopa.browser.version.major] = true;
+		}
 	} else if (koopa.safari) {
-		version = parseVersion(/\bVersion\/([a-z\d.]+)\b/i, 'safari');
+		if (match = /\bVersion\/([a-z\d.]+)\b/i.exec(userAgent)) {
+			koopa.browser.version = getVersionInfo(match[1], '.');
+			koopa['safari' + koopa.browser.version.major] = true;
+		}
 	} else if (koopa.opera) {
-		version = parseVersion(/\bVersion\/([a-z\d.]+)\b/i, 'opera');
+		if (match = /\bVersion\/([a-z\d.]+)\b/i.exec(userAgent)) {
+			koopa.browser.version = getVersionInfo(match[1], '.');
+			koopa['opera' + koopa.browser.version.major] = true;
+		}
 		if (!version) {
 			//older versions of opera
-			version = parseVersion(/\bOpera\/([a-z\d.]+)\b/i, 'opera');
+			if (match = /\bVersion\/([a-z\d.]+)\b/i.exec(userAgent)) {
+				koopa.browser.version = getVersionInfo(match[1], '.');
+				koopa['safari' + koopa.browser.version.major] = true;
+			} else if (match = /\bOpera\/([a-z\d.]+)\b/i.exec(userAgent)) {
+				koopa.browser.version = getVersionInfo(match[1], '.');
+				koopa['opera' + koopa.browser.version.major] = true;
+			}
 		}
 	}
 
@@ -229,16 +238,6 @@
 		koopa.engine.version = getVersionInfo(match[2], '.');
 		setVersionInfo(prefix, koopa.engine.version);
 	}
-
-	versionParts = version.split('.');
-	koopa.version = {
-		major: versionParts[0],
-		minor: versionParts[1] || '',
-		rest: versionParts.slice(2).join('.'),
-		toString: function() {
-			return version;
-		}
-	};
 
 	return koopa;
 }));
