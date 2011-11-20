@@ -82,23 +82,6 @@
 		}
 	}
 
-	//browser
-	if (match = /\b(MSIE|Firefox|Chrome|Opera)\b/i.exec(userAgent)) {
-		prefix = toCamelCase(match[1]);
-		if (prefix === 'msie') {
-			prefix = 'ie';
-		}
-		
-		koopa[prefix] = true;
-		koopa.browser.name = match[1] || match[2] || match[3] || match[4];
-	}
-
-	//chrome identifies as safari
-	if (!koopa.chrome && /\bSafari\b/i.test(userAgent)) {
-		koopa.safari = true;
-		koopa.browser.name = 'Safari';
-	}
-
 	//specific os
 	if (match = /\bWindows NT ([\d.]+)?\b/i.exec(userAgent)) {
 		koopa.windows = true;
@@ -194,6 +177,22 @@
 	}
 
 	//browser
+	if (!koopa.mobile && (match = /\b(MSIE|Firefox|Chrome|Opera)\b/i.exec(userAgent))) {
+		prefix = toCamelCase(match[1]);
+		if (prefix === 'msie') {
+			prefix = 'ie';
+		}
+
+		koopa[prefix] = true;
+		koopa.browser.name = match[1];
+	}
+
+	//chrome identifies as safari
+	if (!koopa.chrome && /\bSafari\b/i.test(userAgent)) {
+		koopa.safari = true;
+		koopa.browser.name = 'Safari';
+	}
+
 	if (koopa.ie) {
 		if (match = /\bMSIE ([a-z\d.]+)\b/i.exec(userAgent)) {
 			koopa.browser.version = getVersionInfo(match[1], '.');
