@@ -1,10 +1,6 @@
 (function(name, definition) {
 	if (typeof(module) === 'undefined') {
-		if (typeof(jQuery) !== 'undefined') {
-			jQuery[name] = definition;
-		} else {
-			window[name] = definition;
-		}
+		window[name] = definition;
 	} else {
 		module.exports = definition;
 	}

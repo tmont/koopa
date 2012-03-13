@@ -32,7 +32,7 @@ Include koopa somewhere:
 (ab)Use it:
 
 ```javascript
-var info = koopa(); //if jQuery is available, use $.koopa() instead
+var info = koopa();
 if (info.ie6) {
 	alert('wtfmate?');
 } else if (info.ie && info.version.major < 9) {
@@ -62,7 +62,7 @@ function handleRequest(request) {
   	console.log('wtfmate?');
   } else if (info.ie && info.version.major < 9) {
     console.log('You suck!');
-  } else if (info.chrome && info.macintosh) {
+  } else if (info.chrome && info.macOsX) {
     console.log('What a hipster...');
   }
 }
