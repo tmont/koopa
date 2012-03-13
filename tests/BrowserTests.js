@@ -3,8 +3,9 @@
 	var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
 
 	var suite = Jarvis.suite('Browser tests', [
-		Jarvis.suite('Firefox tests', [(function(){
+		Jarvis.suite('Firefox tests', (function(){
 			function verifyCommonValues(info, majorVersion) {
+				Assert.that(info.browser, Has.property('name').equalTo('Firefox'));
 				data.util.assertKoopaProperty(info, 'firefox');
 				data.util.assertKoopaProperty(info, 'firefox' + majorVersion);
 			}
@@ -40,10 +41,11 @@
 					Assert.that(koopaDeref(data.firefox.nonNumericVersion).browser.version.toString(), Is.equalTo('6.0a2'));
 				}
 			];
-		}())]),
+		}())),
 
-		Jarvis.suite('Safari tests', [(function(){
+		Jarvis.suite('Safari tests', (function(){
 			function verifyCommonValues(info, majorVersion) {
+				Assert.that(info.browser, Has.property('name').equalTo('Safari'));
 				data.util.assertKoopaProperty(info, 'safari');
 				data.util.assertKoopaProperty(info, 'safari' + majorVersion);
 			}
@@ -71,10 +73,11 @@
 					Assert.that(info.browser.version.toString(), Is.equalTo('5.0.4'));
 				}
 			];
-		}())]),
+		}())),
 
-		Jarvis.suite('IE tests', [(function(){
+		Jarvis.suite('IE tests', (function(){
 			function verifyCommonValues(info, majorVersion) {
+				Assert.that(info.browser, Has.property('name').equalTo('MSIE'));
 				data.util.assertKoopaProperty(info, 'ie');
 				data.util.assertKoopaProperty(info, 'ie' + majorVersion);
 			}
@@ -94,10 +97,11 @@
 					Assert.that(info.browser.version.toString(), Is.equalTo('8.0'));
 				}
 			];
-		}())]),
+		}())),
 
-		Jarvis.suite('Chrome tests', [(function(){
+		Jarvis.suite('Chrome tests', (function(){
 			function verifyCommonValues(info, majorVersion) {
+				Assert.that(info.browser, Has.property('name').equalTo('Chrome'));
 				data.util.assertKoopaProperty(info, 'chrome');
 				data.util.assertKoopaProperty(info, 'chrome' + majorVersion);
 				Assert.that(info, Has.no.key('safari')); //should never identify as safari
@@ -126,9 +130,9 @@
 					Assert.that(info.browser.version.toString(), Is.equalTo('15.0.874.54'));
 				}
 			];
-		}())]),
+		}())),
 
-		Jarvis.suite('Opera tests', [(function(){
+		Jarvis.suite('Opera tests', (function(){
 			function verifyCommonValues(info, majorVersion) {
 				data.util.assertKoopaProperty(info, 'opera');
 				data.util.assertKoopaProperty(info, 'opera' + majorVersion);
@@ -165,7 +169,7 @@
 					Assert.that(info.browser.version.toString(), Is.equalTo('9.63'));
 				}
 			];
-		}())])
+		}()))
 	]);
 
 	if (typeof(module) === 'undefined') {
