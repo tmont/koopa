@@ -1,9 +1,9 @@
-var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
-var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
+(function() {
+	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+	var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
 
-function Browser_tests() {
-	return [
-		function Firefox_tests() {
+	var suite = Jarvis.suite('Browser tests', [
+		Jarvis.suite('Firefox tests', [(function(){
 			function verifyCommonValues(info, majorVersion) {
 				data.util.assertKoopaProperty(info, 'firefox');
 				data.util.assertKoopaProperty(info, 'firefox' + majorVersion);
@@ -40,9 +40,9 @@ function Browser_tests() {
 					Assert.that(koopaDeref(data.firefox.nonNumericVersion).browser.version.toString(), Is.equalTo('6.0a2'));
 				}
 			];
-		},
+		}())]),
 
-		function Safari_tests() {
+		Jarvis.suite('Safari tests', [(function(){
 			function verifyCommonValues(info, majorVersion) {
 				data.util.assertKoopaProperty(info, 'safari');
 				data.util.assertKoopaProperty(info, 'safari' + majorVersion);
@@ -71,9 +71,9 @@ function Browser_tests() {
 					Assert.that(info.browser.version.toString(), Is.equalTo('5.0.4'));
 				}
 			];
-		},
+		}())]),
 
-		function IE_tests() {
+		Jarvis.suite('IE tests', [(function(){
 			function verifyCommonValues(info, majorVersion) {
 				data.util.assertKoopaProperty(info, 'ie');
 				data.util.assertKoopaProperty(info, 'ie' + majorVersion);
@@ -94,9 +94,9 @@ function Browser_tests() {
 					Assert.that(info.browser.version.toString(), Is.equalTo('8.0'));
 				}
 			];
-		},
+		}())]),
 
-		function Chrome_tests() {
+		Jarvis.suite('Chrome tests', [(function(){
 			function verifyCommonValues(info, majorVersion) {
 				data.util.assertKoopaProperty(info, 'chrome');
 				data.util.assertKoopaProperty(info, 'chrome' + majorVersion);
@@ -126,9 +126,9 @@ function Browser_tests() {
 					Assert.that(info.browser.version.toString(), Is.equalTo('15.0.874.54'));
 				}
 			];
-		},
+		}())]),
 
-		function Opera_tests() {
+		Jarvis.suite('Opera tests', [(function(){
 			function verifyCommonValues(info, majorVersion) {
 				data.util.assertKoopaProperty(info, 'opera');
 				data.util.assertKoopaProperty(info, 'opera' + majorVersion);
@@ -165,12 +165,12 @@ function Browser_tests() {
 					Assert.that(info.browser.version.toString(), Is.equalTo('9.63'));
 				}
 			];
-		}
-	];
-}
+		}())])
+	]);
 
-if (typeof(module) === 'undefined') {
-	Jarvis.run(Browser_tests);
-} else {
-	module.exports = Browser_tests;
-}
+	if (typeof(module) === 'undefined') {
+		Jarvis.run(suite);
+	} else {
+		module.exports = suite;
+	}
+}());

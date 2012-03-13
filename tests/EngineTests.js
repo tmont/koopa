@@ -1,8 +1,8 @@
-var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
-var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
+(function(){
+	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+	var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
 
-function Engine_tests() {
-	return [
+	var suite = Jarvis.suite('Engine tests', [
 		function Should_detect_gecko() {
 			var info = koopaDeref(data.engine.gecko);
 			data.util.assertKoopaProperty(info, 'gecko');
@@ -36,11 +36,11 @@ function Engine_tests() {
 			data.util.assertKoopaProperty(info, 'webkit534');
 			data.util.assertKoopaProperty(info, 'webkit534_1_');
 		},
-	];
-}
+	]);
 
-if (typeof(module) === 'undefined') {
-	Jarvis.run(Engine_tests);
-} else {
-	module.exports = Engine_tests;
-}
+	if (typeof(module) === 'undefined') {
+		Jarvis.run(suite);
+	} else {
+		module.exports = suite;
+	}
+}());

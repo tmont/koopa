@@ -1,8 +1,7 @@
-var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
-var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
+(function(){
+	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
 
-function Miscellaneous_tests() {
-	return [
+	var suite = Jarvis.suite('Miscellaneous tests', [
 		function Should_handle_empty_user_agent() {
 			if (typeof(window) !== 'undefined') {
 				Assert.ignore('koopa on the browser uses navigator.userAgent');
@@ -21,11 +20,11 @@ function Miscellaneous_tests() {
 			Assert.that(info.browser.version, Has.key('rest'));
 			Assert.that(info.browser.version, Has.property('rest').identicalTo(''));
 		}
-	];
-}
+	]);
 
-if (typeof(module) === 'undefined') {
-	Jarvis.run(Miscellaneous_tests);
-} else {
-	module.exports = Miscellaneous_tests;
-}
+	if (typeof(module) === 'undefined') {
+		Jarvis.run(suite);
+	} else {
+		module.exports = suite;
+	}
+}());

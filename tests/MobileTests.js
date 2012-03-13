@@ -1,8 +1,9 @@
-var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
-var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
+(function(){
 
-function Mobile_tests() {
-	return [
+	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+	var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
+
+	var suite = Jarvis.suite('Mobile tests', [
 		function Should_detect_ipad() {
 			var info = koopaDeref(data.mobile.ipad);
 
@@ -73,11 +74,13 @@ function Mobile_tests() {
 			data.util.assertKoopaProperty(info, 'mobile');
 			data.util.assertKoopaProperty(info, 'iemobile');
 		},
-	];
-}
+	]);
 
-if (typeof(module) === 'undefined') {
-	Jarvis.run(Mobile_tests);
-} else {
-	module.exports = Mobile_tests;
-}
+
+	if (typeof(module) === 'undefined') {
+		Jarvis.run(suite);
+	} else {
+		module.exports = suite;
+	}
+
+}());
