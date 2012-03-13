@@ -84,7 +84,7 @@
 	//specific os
 	if (match = /\bWindows NT ([\d.]+)?\b/i.exec(userAgent)) {
 		koopa.windows = true;
-		koopa.os.family = 'windows';
+		koopa.os.family = 'Windows';
 		koopa.os.version = getVersionInfo(match[1], '.');
 		temp = koopa.os.version.major + '.' + koopa.os.version.minor;
 		if (temp !== '.') {
@@ -105,6 +105,7 @@
 	if (match = /\bMac OS X ([\w.]+)?\b/i.exec(userAgent)) {
 		prefix = 'macOsX';
 		koopa.macintosh = true;
+		koopa.mac = true;
 		koopa.os.family = 'Macintosh';
 
 		koopa[prefix]= true;
@@ -154,8 +155,11 @@
 	}
 
 	//catch-all os
-	if (!koopa.windows && !koopa.macintosh && !koopa.linux && (match = /\b(Linux|Windows|Macintosh)\b/i.exec(userAgent))) {
+	if (!koopa.windows && !koopa.mac && !koopa.linux && (match = /\b(Linux|Windows|Macintosh)\b/i.exec(userAgent))) {
 		koopa[toCamelCase(match[1])] = true;
+		if (koopa.macintosh) {
+			koopa.mac = true;
+		}
 		koopa.os.family = match[1];
 	}
 

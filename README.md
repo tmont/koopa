@@ -77,8 +77,8 @@ sudo tail -n 1 /var/log/nginx/access.log | php -r "echo end(fgetcsv(STDIN, 0, ' 
 
 Parsed User-Agent Values
 ------------------------
-Only the `version` and `userAgent` properties will be set every time; the rest are conditional on the
-user agent string. To get the entire version string, use `koopa.version.toString()`.
+Only the `browser`, `os`, `engine` and `userAgent` properties will be set every time; the rest are conditional on the
+user agent string.
 
 ```javascript
 {
@@ -88,11 +88,47 @@ user agent string. To get the entire version string, use `koopa.version.toString
   chrome: true,
   safari: true,
   opera: true,
+  browser: {
+    name: 'string',
+    version: {
+      major: 'string',
+      minor: 'string',
+      rest: 'string',
+      toString: function() {}
+    }
+  },
 
   //os
   linux: true,
   windows: true,
   mac: true,
+  macOsX: true
+  os: {
+    family: 'Linux' | 'Macintosh' | 'Windows',
+    name: 'string',
+    distro: 'string',
+    version: {
+      major: 'string',
+      minor: 'string',
+      rest: 'string',
+      toString: function() {}
+    }
+  },
+
+  //engine
+  webkit: true,
+  gecko: true,
+  trident: true,
+  presto: true,
+  engine: {
+    name: 'webkit' | 'gecko' | 'trident' | 'presto',
+    version: {
+      major: 'string',
+      minor: 'string',
+      rest: 'string',
+      toString: function() {}
+    }
+  },
 
   //mobile os
   android: true,
@@ -110,13 +146,7 @@ user agent string. To get the entire version string, use `koopa.version.toString
 
   //miscellaneous
   mobile: true,
-  cssPrefix: 'moz' | 'ms' | 'webkit' | 'o',
-  userAgent: 'string', //the parsed user agent
-  version: {
-    major: 'string',
-    minor: 'string',
-    rest: 'string'
-  }
+  userAgent: 'string' //the original user agent string
 }
 ```
 
