@@ -13,8 +13,7 @@
 		userAgent = window.navigator.userAgent.toString();
 	}
 
-	var version = '',
-		match,
+	var match,
 		temp,
 		prefix,
 		distro,
@@ -24,7 +23,11 @@
 				family: '',
 				name: '',
 				distro: '',
-				version: {}
+				version: {
+					major: '',
+					minor: '',
+					rest: ''
+				}
 			},
 			browser: {
 				name: '',
@@ -167,8 +170,13 @@
 	}
 
 	//mobile browser
-	if (match = /\b(?:(iP(?:ad|od|hone))|(Blackberry)|(?:(?:MS)?(IEMobile))|(Opera Mini))\b/i.exec(userAgent)) {
-		koopa[toCamelCase(match[1] || match[2] || match[3] || match[4])] = true;
+	if (match = /\b(iP(?:ad|od|hone)|Blackberry|(?:MS)?IEMobile|Opera Mini|Mobile Safari)\b/i.exec(userAgent)) {
+        prefix = toCamelCase(match[1]);
+        if (prefix === 'msiemobile') {
+            prefix = 'iemobile';
+        }
+
+		koopa[prefix] = true;
 		if (koopa.ipad || koopa.iphone || koopa.ipod) {
 			koopa.ios = true;
 		}
@@ -194,7 +202,7 @@
 	}
 
 	if (koopa.ie) {
-		if (match = /\bMSIE ([a-z\d.]+)\b/i.exec(userAgent)) {
+		if (match = /\bMSIE(?:Mobile)? ([a-z\d.]+)\b/i.exec(userAgent)) {
 			koopa.browser.version = getVersionInfo(match[1], '.');
 			koopa['ie' + koopa.browser.version.major] = true;
 		}
@@ -212,8 +220,7 @@
 		if (match = /\bVersion\/([a-z\d.]+)\b/i.exec(userAgent)) {
 			koopa.browser.version = getVersionInfo(match[1], '.');
 			koopa['opera' + koopa.browser.version.major] = true;
-		}
-		if (!version) {
+		} else {
 			//older versions of opera
 			if (match = /\bVersion\/([a-z\d.]+)\b/i.exec(userAgent)) {
 				koopa.browser.version = getVersionInfo(match[1], '.');
