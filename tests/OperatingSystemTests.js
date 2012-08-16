@@ -245,6 +245,7 @@
 				Assert.that(koopaDeref(data.mac.osx10_5), Has.property('leopard').TRUE());
 				Assert.that(koopaDeref(data.mac.osx10_6), Has.property('snowLeopard').TRUE());
 				Assert.that(koopaDeref(data.mac.osx10_7), Has.property('lion').TRUE());
+				Assert.that(koopaDeref(data.mac.osx10_8), Has.property('mountainLion').TRUE());
 			}
 		]),
 

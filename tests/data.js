@@ -65,6 +65,7 @@
 			osx10_5: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
 			osx10_6: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
 			osx10_7: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
+			osx10_7: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.8; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5',
 			osxUnderscores: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1',
 			noDistro: 'Mozilla/5.0 (Macintosh; U; en-US; rv:1.9.2) Gecko/20091218 Firefox 3.6b5'
 		},

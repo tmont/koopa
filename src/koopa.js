@@ -118,14 +118,15 @@
 				}
 
 				switch (koopa.os.version.minor) {
-					case '7': koopa.lion        = true; koopa.os.name = 'Lion';         break;
-					case '6': koopa.snowLeopard = true; koopa.os.name = 'Snow Leopard'; break;
-					case '5': koopa.leopard     = true; koopa.os.name = 'Leopard';      break;
-					case '4': koopa.tiger       = true; koopa.os.name = 'Tiger';        break;
-					case '3': koopa.panther     = true; koopa.os.name = 'Panther';      break;
-					case '2': koopa.jaguar      = true; koopa.os.name = 'Jaguar';       break;
-					case '1': koopa.puma        = true; koopa.os.name = 'Puma';         break;
-					case '0': koopa.cheetah     = true; koopa.os.name = 'Cheetah';      break;
+					case '8': koopa.mountainLion = true; koopa.os.name = 'Mountain Lion'; break;
+					case '7': koopa.lion         = true; koopa.os.name = 'Lion';          break;
+					case '6': koopa.snowLeopard  = true; koopa.os.name = 'Snow Leopard';  break;
+					case '5': koopa.leopard      = true; koopa.os.name = 'Leopard';       break;
+					case '4': koopa.tiger        = true; koopa.os.name = 'Tiger';         break;
+					case '3': koopa.panther      = true; koopa.os.name = 'Panther';       break;
+					case '2': koopa.jaguar       = true; koopa.os.name = 'Jaguar';        break;
+					case '1': koopa.puma         = true; koopa.os.name = 'Puma';          break;
+					case '0': koopa.cheetah      = true; koopa.os.name = 'Cheetah';       break;
 				}
 			}
 		}
