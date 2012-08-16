@@ -18,7 +18,8 @@
 	"bin": "./bin/koopa-cli.js",
 
 	"devDependencies": {
-		"jarvis-test": ">=3.0.0"
+		"mocha": ">=1.3.2",
+		"expect.js": ">=0.1.2"
 	},
 
 	"directories": {

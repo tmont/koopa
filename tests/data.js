@@ -110,8 +110,7 @@
 
 		util: {
 			assertKoopaProperty: function(info, name) {
-				Assert.that(info, Has.key(name));
-				Assert.that(info, Has.property(name).TRUE());
+				expect(info).to.have.property(name, true);
 			}
 		}
 	};

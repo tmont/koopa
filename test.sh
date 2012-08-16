@@ -1,1 +1,1 @@
-jarvis --no-prologue --colorize --whitelist Tests\\.js$ tests
+node_modules/.bin/mocha --ui bdd --reporter dot tests

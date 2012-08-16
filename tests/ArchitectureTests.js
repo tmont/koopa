@@ -1,34 +1,25 @@
 (function() {
-	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+	var expect = typeof(module) === 'undefined' ? window.expect : require('expect.js');
 	var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
+	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
 
-	var suite = Jarvis.suite('Architecture tests', [
-		function Should_treat_amd64_as_64_bit() {
-			data.util.assertKoopaProperty(koopaDeref(data.arch.amd64), 'sixtyFourBit');
-		},
-
-		function Should_treat_x86_64_as_64_bit() {
-			data.util.assertKoopaProperty(koopaDeref(data.arch.x86_64), 'sixtyFourBit');
-		},
-
-		function Should_treat_win64_as_64_bit() {
-			data.util.assertKoopaProperty(koopaDeref(data.arch.win64), 'sixtyFourBit');
-		},
-
-		function Should_treat_wow64_as_64_bit() {
-			data.util.assertKoopaProperty(koopaDeref(data.arch.wow64), 'sixtyFourBit');
-		},
-
-		function Should_treat_mac_osx_greater_than_or_equal_to_10_5_as_64_bit() {
-			data.util.assertKoopaProperty(koopaDeref(data.arch.osx10_6), 'sixtyFourBit');
-			data.util.assertKoopaProperty(koopaDeref(data.arch.osx10_5), 'sixtyFourBit');
-			Assert.that(koopaDeref(data.arch.osx10_4), Has.no.key('sixtyFourBit'));
-		}
-	]);
-
-	if (typeof(module) === 'undefined') {
-		Jarvis.run(suite);
-	} else {
-		module.exports = suite;
-	}
+	describe('Architecture tests', function() {
+		it('Should treat amd64 as 64-bit', function() {
+			expect(koopaDeref(data.arch.amd64)).to.have.property('sixtyFourBit', true);
+		});
+		it('Should treat x86_64 as 64-bit', function() {
+			expect(koopaDeref(data.arch.x86_64)).to.have.property('sixtyFourBit', true);
+		});
+		it('Should treat wow64 as 64-bit', function() {
+			expect(koopaDeref(data.arch.wow64)).to.have.property('sixtyFourBit', true);
+		});
+		it('Should treat win64 as 64-bit', function() {
+			expect(koopaDeref(data.arch.win64)).to.have.property('sixtyFourBit', true);
+		});
+		it('Should treat Mac OS X >= 10.5 as 64-bit', function() {
+			expect(koopaDeref(data.arch.osx10_4)).to.not.have.property('sixtyFourBit');
+			expect(koopaDeref(data.arch.osx10_5)).to.have.property('sixtyFourBit', true);
+			expect(koopaDeref(data.arch.osx10_6)).to.have.property('sixtyFourBit', true);
+		});
+	});
 }());
