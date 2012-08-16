@@ -65,6 +65,7 @@ if (!userAgent) {
 } else if (userAgent === '--help' || userAgent === '-h') {
 	help();
 	process.exit(0);
+} else {
 	parseUserAgent();
 }
 
