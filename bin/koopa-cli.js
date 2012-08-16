@@ -5,7 +5,7 @@ function usage() {
 }
 
 function help() {
-	console.log('koopa 1.1.0');
+	console.log('koopa 2.0.0');
 	console.log(' by Tommy Montgomery');
 	console.log();
 	console.log('koopa is a user-agent parsing utility that reads in a user-agent string ');
