@@ -1,30 +1,22 @@
 (function(){
+	var expect = typeof(module) === 'undefined' ? window.expect : require('expect.js');
+	var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
 	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
 
-	var suite = Jarvis.suite('Miscellaneous tests', [
-		function Should_handle_empty_user_agent() {
+	describe('Miscellaneous tests', function() {
+		it('Should handle empty user-agent', function() {
 			if (typeof(window) !== 'undefined') {
-				Assert.ignore('koopa on the browser uses navigator.userAgent');
+				//on the browser it uses navigator.userAgent so it'll never be empty
+				return;
 			}
 
 			var info = koopaDeref();
-			Assert.that(info, Has.key('userAgent'));
-			Assert.that(info.userAgent, Is.undefined());
-
-			Assert.that(info, Has.key('browser'));
-			Assert.that(info.browser, Has.key('version'));
-			Assert.that(info.browser.version, Has.key('major'));
-			Assert.that(info.browser.version, Has.property('major').identicalTo(''));
-			Assert.that(info.browser.version, Has.key('minor'));
-			Assert.that(info.browser.version, Has.property('minor').identicalTo(''));
-			Assert.that(info.browser.version, Has.key('rest'));
-			Assert.that(info.browser.version, Has.property('rest').identicalTo(''));
-		}
-	]);
-
-	if (typeof(module) === 'undefined') {
-		Jarvis.run(suite);
-	} else {
-		module.exports = suite;
-	}
+			expect(info).to.have.property('userAgent', undefined);
+			expect(info).to.have.property('browser');
+			expect(info.browser).to.have.property('version');
+			expect(info.browser.version).to.have.property('major', '');
+			expect(info.browser.version).to.have.property('minor', '');
+			expect(info.browser.version).to.have.property('rest', '');
+		});
+	});
 }());
