@@ -1,274 +1,167 @@
 (function(){
-	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+	var expect = typeof(module) === 'undefined' ? window.expect : require('expect.js');
 	var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
+	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
 
-	var suite = Jarvis.suite('Operating system tests', [
-		Jarvis.suite('Linux distro tests', [
-			function Should_detect_ubuntu_version_and_distro() {
+	describe('Operating system tests', function() {
+		describe('Linux distro tests', function() {
+			it('Should detect ubuntu version and distro', function() {
 				var info = koopaDeref(data.linux.ubuntu);
-				Assert.that(info, Has.key('ubuntu'));
-				Assert.that(info, Has.property('ubuntu').TRUE());
+				expect(info).to.have.property('ubuntu', true);
+				expect(info).to.have.property('linux', true);
+				expect(info).to.have.property('ubuntu9_04', true);
+				expect(info).to.have.property('jaunty', true);
+			});
 
-				Assert.that(info, Has.key('linux'));
-				Assert.that(info, Has.property('linux').TRUE());
-
-				Assert.that(info, Has.key('ubuntu9_04'));
-				Assert.that(info, Has.property('ubuntu9_04').TRUE());
-
-				Assert.that(info, Has.key('jaunty'));
-				Assert.that(info, Has.property('jaunty').TRUE());
-			},
-
-			function Should_detect_kubuntu_version_and_distro() {
+			it('Should detect ubuntu version and distro', function() {
 				var info = koopaDeref(data.linux.kubuntu);
-				Assert.that(info, Has.key('kubuntu'));
-				Assert.that(info, Has.property('kubuntu').TRUE());
+				expect(info).to.have.property('kubuntu', true);
+				expect(info).to.have.property('linux', true);
+				expect(info).to.have.property('kubuntu9_04', true);
+				expect(info).to.have.property('jaunty', true);
+			});
 
-				Assert.that(info, Has.key('linux'));
-				Assert.that(info, Has.property('linux').TRUE());
-
-				Assert.that(info, Has.key('kubuntu9_04'));
-				Assert.that(info, Has.property('kubuntu9_04').TRUE());
-
-				Assert.that(info, Has.key('jaunty'));
-				Assert.that(info, Has.property('jaunty').TRUE());
-			},
-
-			function Should_detect_xubuntu_version_and_distro() {
+			it('Should detect zubuntu version and distro', function() {
 				var info = koopaDeref(data.linux.xubuntu);
-				Assert.that(info, Has.key('xubuntu'));
-				Assert.that(info, Has.property('xubuntu').TRUE());
+				expect(info).to.have.property('xubuntu', true);
+				expect(info).to.have.property('linux', true);
+				expect(info).to.have.property('xubuntu9_04', true);
+				expect(info).to.have.property('jaunty', true);
+			});
 
-				Assert.that(info, Has.key('linux'));
-				Assert.that(info, Has.property('linux').TRUE());
-
-				Assert.that(info, Has.key('xubuntu9_04'));
-				Assert.that(info, Has.property('xubuntu9_04').TRUE());
-
-				Assert.that(info, Has.key('jaunty'));
-				Assert.that(info, Has.property('jaunty').TRUE());
-			},
-
-			function Should_detect_freebsd() {
+			it('Should detect freebsd', function() {
 				var info = koopaDeref(data.linux.freeBsd);
-				Assert.that(info, Has.key('freebsd'));
-				Assert.that(info, Has.property('freebsd').TRUE());
+				expect(info).to.have.property('freebsd', true);
+				expect(info).to.have.property('linux', true);
+			});
 
-				Assert.that(info, Has.key('linux'));
-				Assert.that(info, Has.property('linux').TRUE());
-			},
-
-			function Should_detect_debian_version_and_distro() {
+			it('Should detect debian version', function() {
 				var info = koopaDeref(data.linux.debian);
-				Assert.that(info, Has.key('debian'));
-				Assert.that(info, Has.property('debian').TRUE());
+				expect(info).to.have.property('debian', true);
+				expect(info).to.have.property('linux', true);
+				expect(info).to.have.property('debian3', true);
+				expect(info).to.have.property('debian3_0_rc2_2', true);
+			});
 
-				Assert.that(info, Has.key('linux'));
-				Assert.that(info, Has.property('linux').TRUE());
-
-				Assert.that(info, Has.key('debian3'));
-				Assert.that(info, Has.property('debian3').TRUE());
-
-				Assert.that(info, Has.key('debian3_0_rc2_2'));
-				Assert.that(info, Has.property('debian3_0_rc2_2').TRUE());
-			},
-
-			function Should_detect_fedora_version_and_distro() {
+			it('Should detect fedora version', function() {
 				var info = koopaDeref(data.linux.fedora);
-				Assert.that(info, Has.key('fedora'));
-				Assert.that(info, Has.property('fedora').TRUE());
+				expect(info).to.have.property('fedora', true);
+				expect(info).to.have.property('linux', true);
+				expect(info).to.have.property('fedora3', true);
+				expect(info).to.have.property('fedora3_5_1_fc11', true);
+			});
 
-				Assert.that(info, Has.key('linux'));
-				Assert.that(info, Has.property('linux').TRUE());
-
-				Assert.that(info, Has.key('fedora3'));
-				Assert.that(info, Has.property('fedora3').TRUE());
-
-				Assert.that(info, Has.key('fedora3_5_1_fc11'));
-				Assert.that(info, Has.property('fedora3_5_1_fc11').TRUE());
-			},
-
-			function Should_detect_suse_version_and_distro() {
+			it('Should detect suse version', function() {
 				var info = koopaDeref(data.linux.suse);
-				Assert.that(info, Has.key('suse'));
-				Assert.that(info, Has.property('suse').TRUE());
+				expect(info).to.have.property('suse', true);
+				expect(info).to.have.property('linux', true);
+				expect(info).to.have.property('suse3', true);
+				expect(info).to.have.property('suse3_0_1_2', true);
+			});
 
-				Assert.that(info, Has.key('linux'));
-				Assert.that(info, Has.property('linux').TRUE());
-
-				Assert.that(info, Has.key('suse3'));
-				Assert.that(info, Has.property('suse3').TRUE());
-
-				Assert.that(info, Has.key('suse3_0_1_2'));
-				Assert.that(info, Has.property('suse3_0_1_2').TRUE());
-			},
-
-			function Should_detect_gentoo() {
+			it('Should detect gentoo', function() {
 				var info = koopaDeref(data.linux.gentoo);
-				Assert.that(info, Has.key('gentoo'));
-				Assert.that(info, Has.property('gentoo').TRUE());
+				expect(info).to.have.property('gentoo', true);
+				expect(info).to.have.property('linux', true);
+			});
 
-				Assert.that(info, Has.key('linux'));
-				Assert.that(info, Has.property('linux').TRUE());
-			},
-
-			function Should_detect_centos_version_and_distro() {
+			it('Should detect centos version', function() {
 				var info = koopaDeref(data.linux.centos);
-				Assert.that(info, Has.key('centos'));
-				Assert.that(info, Has.property('centos').TRUE());
+				expect(info).to.have.property('centos', true);
+				expect(info).to.have.property('linux', true);
+				expect(info).to.have.property('centos3', true);
+				expect(info).to.have.property('centos3_6_3_el5_centos', true);
+			});
 
-				Assert.that(info, Has.key('linux'));
-				Assert.that(info, Has.property('linux').TRUE());
-
-				Assert.that(info, Has.key('centos3'));
-				Assert.that(info, Has.property('centos3').TRUE());
-
-				Assert.that(info, Has.key('centos3_6_3_el5_centos'));
-				Assert.that(info, Has.property('centos3_6_3_el5_centos').TRUE());
-			},
-
-			function Should_detect_red_hat_version_and_distro() {
+			it('Should detect RedHat version', function() {
 				var info = koopaDeref(data.linux.redHat);
-				Assert.that(info, Has.key('redHat'));
-				Assert.that(info, Has.property('redHat').TRUE());
+				expect(info).to.have.property('redHat', true);
+				expect(info).to.have.property('linux', true);
+				expect(info).to.have.property('redHat3', true);
+				expect(info).to.have.property('redHat3_6_2_el5', true);
+			});
 
-				Assert.that(info, Has.key('linux'));
-				Assert.that(info, Has.property('linux').TRUE());
-
-				Assert.that(info, Has.key('redHat3'));
-				Assert.that(info, Has.property('redHat3').TRUE());
-
-				Assert.that(info, Has.key('redHat3_6_2_el5'));
-				Assert.that(info, Has.property('redHat3_6_2_el5').TRUE());
-			},
-
-			function Should_detect_linux_mint_version_and_distro() {
+			it('Should detect Linux Mint version and distro', function() {
 				var info = koopaDeref(data.linux.mint);
-				Assert.that(info, Has.key('linuxMint'));
-				Assert.that(info, Has.property('linuxMint').TRUE());
+				expect(info).to.have.property('linuxMint', true);
+				expect(info).to.have.property('linux', true);
+				expect(info).to.have.property('linuxMint7', true);
+				expect(info).to.have.property('gloria', true);
+			});
+		});
 
-				Assert.that(info, Has.key('linux'));
-				Assert.that(info, Has.property('linux').TRUE());
-
-				Assert.that(info, Has.key('linuxMint7'));
-				Assert.that(info, Has.property('linuxMint7').TRUE());
-
-				Assert.that(info, Has.key('gloria'));
-				Assert.that(info, Has.property('gloria').TRUE());
-			}
-		]),
-
-		Jarvis.suite('Windows NT tests', [
-			function Should_detect_windows_7() {
+		describe('Windows NT tests', function() {
+			it('Should detect Windows 7', function() {
 				var info = koopaDeref(data.windows.win7);
-				Assert.that(info, Has.key('windows'));
-				Assert.that(info, Has.property('windows').TRUE());
+				expect(info).to.have.property('windows', true);
+				expect(info).to.have.property('windows7', true);
+			});
 
-				Assert.that(info, Has.key('windows7'));
-				Assert.that(info, Has.property('windows7').TRUE());
-			},
-
-			function Should_detect_windows_xp() {
+			it('Should detect Windows XP', function() {
 				var info = koopaDeref(data.windows.winxp);
-				Assert.that(info, Has.key('windows'));
-				Assert.that(info, Has.property('windows').TRUE());
+				expect(info).to.have.property('windows', true);
+				expect(info).to.have.property('windowsXp', true);
+			});
 
-				Assert.that(info, Has.key('windowsXp'));
-				Assert.that(info, Has.property('windowsXp').TRUE());
-			},
-
-			function Should_detect_windows_2000() {
-				var info = koopaDeref(data.windows.win2k);
-				Assert.that(info, Has.key('windows'));
-				Assert.that(info, Has.property('windows').TRUE());
-
-				Assert.that(info, Has.key('windows2000'));
-				Assert.that(info, Has.property('windows2000').TRUE());
-			},
-
-			function Should_detect_windows_vista() {
+			it('Should detect Windows Vista', function() {
 				var info = koopaDeref(data.windows.vista);
-				Assert.that(info, Has.key('windows'));
-				Assert.that(info, Has.property('windows').TRUE());
+				expect(info).to.have.property('windows', true);
+				expect(info).to.have.property('windowsVista', true);
+			});
 
-				Assert.that(info, Has.key('windowsVista'));
-				Assert.that(info, Has.property('windowsVista').TRUE());
-			},
+			it('Should detect Windows 2000', function() {
+				var info = koopaDeref(data.windows.win2k);
+				expect(info).to.have.property('windows', true);
+				expect(info).to.have.property('windows2000', true);
+			});
 
-			function Should_detect_windows_8() {
+			it('Should detect Windows 8', function() {
 				var info = koopaDeref(data.windows.win8);
-				Assert.that(info, Has.key('windows'));
-				Assert.that(info, Has.property('windows').TRUE());
+				expect(info).to.have.property('windows', true);
+				expect(info).to.have.property('windows8', true);
+			});
+		});
 
-				Assert.that(info, Has.key('windows8'));
-				Assert.that(info, Has.property('windows8').TRUE());
-			}
-		]),
-
-		Jarvis.suite('Mac OS X tests', [
-			function Should_detect_os_x_version() {
+		describe('Mac OS X tests', function() {
+			it('Should detect OS X version', function() {
 				var info = koopaDeref(data.mac.osx10_5);
-				Assert.that(info, Has.key('macintosh'));
-				Assert.that(info, Has.property('macintosh').TRUE());
+				expect(info).to.have.property('macintosh', true);
+				expect(info).to.have.property('macOsX', true);
+				expect(info).to.have.property('macOsX10', true);
+				expect(info).to.have.property('macOsX10_5', true);
+			});
 
-				Assert.that(info, Has.key('macOsX'));
-				Assert.that(info, Has.property('macOsX').TRUE());
-
-				Assert.that(info, Has.key('macOsX10'));
-				Assert.that(info, Has.property('macOsX10').TRUE());
-
-				Assert.that(info, Has.key('macOsX10_5'));
-				Assert.that(info, Has.property('macOsX10_5').TRUE());
-			},
-
-			function Should_detect_os_x_version_with_underscored_version() {
+			it('Should detect OS X version with underscored version', function() {
 				var info = koopaDeref(data.mac.osxUnderscores);
-				Assert.that(info, Has.key('macintosh'));
-				Assert.that(info, Has.property('macintosh').TRUE());
+				expect(info).to.have.property('macintosh', true);
+				expect(info).to.have.property('macOsX', true);
+				expect(info).to.have.property('macOsX10', true);
+				expect(info).to.have.property('macOsX10_6_8', true);
+			});
 
-				Assert.that(info, Has.key('macOsX'));
-				Assert.that(info, Has.property('macOsX').TRUE());
+			it('Should compute codename', function() {
+				expect(koopaDeref(data.mac.osx10_0)).to.have.property('cheetah', true);
+				expect(koopaDeref(data.mac.osx10_1)).to.have.property('puma', true);
+				expect(koopaDeref(data.mac.osx10_2)).to.have.property('jaguar', true);
+				expect(koopaDeref(data.mac.osx10_3)).to.have.property('panther', true);
+				expect(koopaDeref(data.mac.osx10_4)).to.have.property('tiger', true);
+				expect(koopaDeref(data.mac.osx10_5)).to.have.property('leopard', true);
+				expect(koopaDeref(data.mac.osx10_6)).to.have.property('snowLeopard', true);
+				expect(koopaDeref(data.mac.osx10_7)).to.have.property('lion', true);
+				expect(koopaDeref(data.mac.osx10_8)).to.have.property('mountainLion', true);
+			});
+		});
 
-				Assert.that(info, Has.key('macOsX10'));
-				Assert.that(info, Has.property('macOsX10').TRUE());
-
-				Assert.that(info, Has.key('macOsX10_6_8'));
-				Assert.that(info, Has.property('macOsX10_6_8').TRUE());
-			},
-
-			function Should_compute_codename() {
-				Assert.that(koopaDeref(data.mac.osx10_0), Has.property('cheetah').TRUE());
-				Assert.that(koopaDeref(data.mac.osx10_1), Has.property('puma').TRUE());
-				Assert.that(koopaDeref(data.mac.osx10_2), Has.property('jaguar').TRUE());
-				Assert.that(koopaDeref(data.mac.osx10_3), Has.property('panther').TRUE());
-				Assert.that(koopaDeref(data.mac.osx10_4), Has.property('tiger').TRUE());
-				Assert.that(koopaDeref(data.mac.osx10_5), Has.property('leopard').TRUE());
-				Assert.that(koopaDeref(data.mac.osx10_6), Has.property('snowLeopard').TRUE());
-				Assert.that(koopaDeref(data.mac.osx10_7), Has.property('lion').TRUE());
-				Assert.that(koopaDeref(data.mac.osx10_8), Has.property('mountainLion').TRUE());
-			}
-		]),
-
-		Jarvis.suite('Non-specific OS tests', [
-			function Should_detect_linux() {
-				data.util.assertKoopaProperty(koopaDeref(data.linux.noDistro), 'linux');
-			},
-
-			function Should_detect_windows() {
-				data.util.assertKoopaProperty(koopaDeref(data.windows.noDistro), 'windows');
-			},
-
-			function Should_detect_mac() {
-				data.util.assertKoopaProperty(koopaDeref(data.mac.noDistro), 'macintosh');
-			}
-		])
-
-	]);
-
-	if (typeof(module) === 'undefined') {
-		Jarvis.run(suite);
-	} else {
-		module.exports = suite;
-	}
-
+		describe('Non-specific OS tests', function() {
+			it('Should detect linux', function() {
+				expect(koopaDeref(data.linux.noDistro)).to.have.property('linux', true);
+			});
+			it('Should detect windows', function() {
+				expect(koopaDeref(data.windows.noDistro)).to.have.property('windows', true);
+			});
+			it('Should detect mac', function() {
+				expect(koopaDeref(data.mac.noDistro)).to.have.property('macintosh', true);
+			});
+		});
+	});
 }());
