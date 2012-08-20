@@ -1,46 +1,41 @@
 (function(){
-	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+	var expect = typeof(module) === 'undefined' ? window.expect : require('expect.js');
 	var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
+	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
 
-	var suite = Jarvis.suite('Engine tests', [
-		function Should_detect_gecko() {
+	describe('Engine tests', function() {
+		it('Should detect Gecko', function() {
 			var info = koopaDeref(data.engine.gecko);
-			data.util.assertKoopaProperty(info, 'gecko');
-			data.util.assertKoopaProperty(info, 'gecko20100101');
-		},
+			expect(info).to.have.property('gecko', true);
+			expect(info).to.have.property('gecko20100101', true);
+		});
 
-		function Should_detect_trident() {
+		it('Should detect Trident', function() {
 			var info = koopaDeref(data.engine.trident);
-			data.util.assertKoopaProperty(info, 'trident');
-			data.util.assertKoopaProperty(info, 'trident5');
-			data.util.assertKoopaProperty(info, 'trident5_0');
-		},
+			expect(info).to.have.property('trident', true);
+			expect(info).to.have.property('trident5', true);
+			expect(info).to.have.property('trident5_0', true);
+		});
 
-		function Should_detect_webkit() {
+		it('Should detect webkit', function() {
 			var info = koopaDeref(data.engine.webkit);
-			data.util.assertKoopaProperty(info, 'webkit');
-			data.util.assertKoopaProperty(info, 'webkit535');
-			data.util.assertKoopaProperty(info, 'webkit535_2');
-		},
+			expect(info).to.have.property('webkit', true);
+			expect(info).to.have.property('webkit535', true);
+			expect(info).to.have.property('webkit535_2', true);
+		});
 
-		function Should_detect_presto() {
+		it('Should detect presto', function() {
 			var info = koopaDeref(data.engine.presto);
-			data.util.assertKoopaProperty(info, 'presto');
-			data.util.assertKoopaProperty(info, 'presto2');
-			data.util.assertKoopaProperty(info, 'presto2_6');
-		},
+			expect(info).to.have.property('presto', true);
+			expect(info).to.have.property('presto2', true);
+			expect(info).to.have.property('presto2_6', true);
+		});
 
-		function Should_parse_engine_version_with_non_numeric_version() {
+		it('Should parse engine version with non-numeric version', function() {
 			var info = koopaDeref(data.engine.nonNumericVersion);
-			data.util.assertKoopaProperty(info, 'webkit');
-			data.util.assertKoopaProperty(info, 'webkit534');
-			data.util.assertKoopaProperty(info, 'webkit534_1_');
-		},
-	]);
-
-	if (typeof(module) === 'undefined') {
-		Jarvis.run(suite);
-	} else {
-		module.exports = suite;
-	}
+			expect(info).to.have.property('webkit', true);
+			expect(info).to.have.property('webkit534', true);
+			expect(info).to.have.property('webkit534_1_', true);
+		});
+	});
 }());
