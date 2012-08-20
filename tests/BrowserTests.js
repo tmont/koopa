@@ -1,180 +1,171 @@
 (function() {
-	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
+	var expect = typeof(module) === 'undefined' ? window.expect : require('expect.js');
 	var data = typeof(module) === 'undefined' ? window.koopaData : require('./data');
+	var koopaDeref = typeof(module) === 'undefined' ? window.koopa : require('../src/koopa');
 
-	var suite = Jarvis.suite('Browser tests', [
-		Jarvis.suite('Firefox tests', (function(){
+	describe('Browser tests', function() {
+		describe('Firefox tests', (function(){
 			function verifyCommonValues(info, majorVersion) {
-				Assert.that(info.browser, Has.property('name').equalTo('Firefox'));
-				data.util.assertKoopaProperty(info, 'firefox');
-				data.util.assertKoopaProperty(info, 'firefox' + majorVersion);
+				expect(info.browser).to.have.property('name', 'Firefox');
+				expect(info).to.have.property('firefox', true);
+				expect(info).to.have.property('firefox' + majorVersion, true);
 			}
 
-			return [
-				function Should_detect_firefox_on_windows() {
+			return function() {
+				it('Should detect Firefox on Windows', function() {
 					verifyCommonValues(koopaDeref(data.firefox.windows), 6);
-				},
+				});
 
-				function Should_detect_firefox_on_linux() {
+				it('Should detect Firefox on Linux', function() {
 					verifyCommonValues(koopaDeref(data.firefox.linux), 7);
-				},
+				});
 
-				function Should_detect_firefox_on_mac() {
+				it('Should detect Firefox on Mac', function() {
 					verifyCommonValues(koopaDeref(data.firefox.mac), 4);
-				},
+				});
 
-				function Should_parse_version() {
-					verifyCommonValues(koopaDeref(data.firefox.threePartVersion), 7);
+				it('Should parse version', function() {
+					var info = koopaDeref(data.firefox.threePartVersion);
+					verifyCommonValues(info, 7);
+					expect(info.browser.version).to.have.property('major', '7');
+					expect(info.browser.version).to.have.property('minor', '0');
+					expect(info.browser.version).to.have.property('rest', '1');
+					expect(info.browser.version.toString()).to.equal('7.0.1');
+				});
 
-					Assert.that(koopaDeref(data.firefox.threePartVersion).browser.version, Has.property('major').equalTo(7));
-					Assert.that(koopaDeref(data.firefox.threePartVersion).browser.version, Has.property('minor').equalTo(0));
-					Assert.that(koopaDeref(data.firefox.threePartVersion).browser.version, Has.property('rest').equalTo(1));
-					Assert.that(koopaDeref(data.firefox.threePartVersion).browser.version.toString(), Is.equalTo('7.0.1'));
-				},
+				it('Should parse versions with non-numeric values', function() {
+					var info = koopaDeref(data.firefox.nonNumericVersion);
+					verifyCommonValues(info, 6);
+					expect(info.browser.version).to.have.property('major', '6');
+					expect(info.browser.version).to.have.property('minor', '0a2');
+					expect(info.browser.version.rest).to.be.empty();
+					expect(info.browser.version.toString()).to.equal('6.0a2');
+				});
+			};
+		}()));
 
-				function Should_parse_version_with_non_numeric_values() {
-					verifyCommonValues(koopaDeref(data.firefox.nonNumericVersion), 6);
-
-					Assert.that(koopaDeref(data.firefox.nonNumericVersion).browser.version, Has.property('major').equalTo(6));
-					Assert.that(koopaDeref(data.firefox.nonNumericVersion).browser.version, Has.property('minor').equalTo('0a2'));
-					Assert.that(koopaDeref(data.firefox.nonNumericVersion).browser.version, Has.property('rest').empty());
-					Assert.that(koopaDeref(data.firefox.nonNumericVersion).browser.version.toString(), Is.equalTo('6.0a2'));
-				}
-			];
-		}())),
-
-		Jarvis.suite('Safari tests', (function(){
+		describe('Safari tests', (function() {
 			function verifyCommonValues(info, majorVersion) {
-				Assert.that(info.browser, Has.property('name').equalTo('Safari'));
-				data.util.assertKoopaProperty(info, 'safari');
-				data.util.assertKoopaProperty(info, 'safari' + majorVersion);
+				expect(info.browser).to.have.property('name', 'Safari');
+				expect(info).to.have.property('safari', true);
+				expect(info).to.have.property('safari' + majorVersion, true);
 			}
 
-			return [
-				function Should_detect_safari_on_windows() {
+			return function() {
+				it('Should detect safari on Windows', function() {
 					verifyCommonValues(koopaDeref(data.safari.windows), 5);
-				},
+				});
 
-				function Should_detect_safari_on_mac() {
-					verifyCommonValues(koopaDeref(data.safari.mac), 5);
-				},
-
-				function Should_detect_safari_on_linuxc() {
+				it('Should detect safari on Linux', function() {
 					verifyCommonValues(koopaDeref(data.safari.linux), 5);
-				},
+				});
 
-				function Should_parse_version() {
+				it('Should detect safari on Mac', function() {
+					verifyCommonValues(koopaDeref(data.safari.mac), 5);
+				});
+
+				it('Should parse version', function() {
 					var info = koopaDeref(data.safari.windows);
 					verifyCommonValues(info, 5);
+					expect(info.browser.version).to.have.property('major', '5');
+					expect(info.browser.version).to.have.property('minor', '0');
+					expect(info.browser.version).to.have.property('rest', '4');
+					expect(info.browser.version.toString()).to.equal('5.0.4');
+				});
+			};
+		}()));
 
-					Assert.that(info.browser.version, Has.property('major').equalTo(5));
-					Assert.that(info.browser.version, Has.property('minor').equalTo(0));
-					Assert.that(info.browser.version, Has.property('rest').equalTo(4));
-					Assert.that(info.browser.version.toString(), Is.equalTo('5.0.4'));
-				}
-			];
-		}())),
-
-		Jarvis.suite('IE tests', (function(){
+		describe('IE tests', (function() {
 			function verifyCommonValues(info, majorVersion) {
-				Assert.that(info.browser, Has.property('name').equalTo('MSIE'));
-				data.util.assertKoopaProperty(info, 'ie');
-				data.util.assertKoopaProperty(info, 'ie' + majorVersion);
+				expect(info.browser).to.have.property('name', 'MSIE');
+				expect(info).to.have.property('ie', true);
+				expect(info).to.have.property('ie' + majorVersion, true);
 			}
 
-			return [
-				function Should_detect_ie() {
+			return function() {
+				it('Should detect IE on Windows', function() {
 					verifyCommonValues(koopaDeref(data.ie.ie9), 9);
-				},
+				});
 
-				function Should_parse_version() {
+				it('Should parse version', function() {
 					var info = koopaDeref(data.ie.ie8);
 					verifyCommonValues(info, 8);
-
-					Assert.that(info.browser.version, Has.property('major').equalTo(8));
-					Assert.that(info.browser.version, Has.property('minor').equalTo(0));
-					Assert.that(info.browser.version, Has.property('rest').empty());
-					Assert.that(info.browser.version.toString(), Is.equalTo('8.0'));
-				}
-			];
-		}())),
-
-		Jarvis.suite('Chrome tests', (function(){
+					expect(info.browser.version).to.have.property('major', '8');
+					expect(info.browser.version).to.have.property('minor', '0');
+					expect(info.browser.version).to.have.property('rest', '');
+					expect(info.browser.version.toString()).to.equal('8.0');
+				});
+			};
+		}()));
+//
+		describe('Chrome tests', (function() {
 			function verifyCommonValues(info, majorVersion) {
-				Assert.that(info.browser, Has.property('name').equalTo('Chrome'));
-				data.util.assertKoopaProperty(info, 'chrome');
-				data.util.assertKoopaProperty(info, 'chrome' + majorVersion);
-				Assert.that(info, Has.no.key('safari')); //should never identify as safari
+				expect(info.browser).to.have.property('name', 'Chrome');
+				expect(info).to.have.property('chrome', true);
+				expect(info).to.have.property('chrome' + majorVersion, true);
+				expect(info).to.not.have.property('safari');
 			}
 
-			return [
-				function Should_detect_chrome_on_windows() {
+			return function() {
+				it('Should detect chrome on Windows', function() {
 					verifyCommonValues(koopaDeref(data.chrome.windows), 16);
-				},
+				});
 
-				function Should_detect_chrome_on_mac() {
-					verifyCommonValues(koopaDeref(data.chrome.mac), 15);
-				},
-
-				function Should_detect_chrome_on_linux() {
+				it('Should detect chrome on Linux', function() {
 					verifyCommonValues(koopaDeref(data.chrome.linux), 15);
-				},
+				});
 
-				function Should_parse_version() {
+				it('Should detect chrome on Mac', function() {
+					verifyCommonValues(koopaDeref(data.chrome.mac), 15);
+				});
+
+				it('Should parse version', function() {
 					var info = koopaDeref(data.chrome.mac);
 					verifyCommonValues(info, 15);
+					expect(info.browser.version).to.have.property('major', '15');
+					expect(info.browser.version).to.have.property('minor', '0');
+					expect(info.browser.version).to.have.property('rest', '874.54');
+					expect(info.browser.version.toString()).to.equal('15.0.874.54');
+				});
+			};
+		}()));
 
-					Assert.that(info.browser.version, Has.property('major').equalTo(15));
-					Assert.that(info.browser.version, Has.property('minor').equalTo(0));
-					Assert.that(info.browser.version, Has.property('rest').equalTo('874.54'));
-					Assert.that(info.browser.version.toString(), Is.equalTo('15.0.874.54'));
-				}
-			];
-		}())),
-
-		Jarvis.suite('Opera tests', (function(){
+		describe('Opera tests', (function() {
 			function verifyCommonValues(info, majorVersion) {
-				data.util.assertKoopaProperty(info, 'opera');
-				data.util.assertKoopaProperty(info, 'opera' + majorVersion);
+				expect(info.browser).to.have.property('name', 'Opera');
+				expect(info).to.have.property('opera', true);
+				expect(info).to.have.property('opera' + majorVersion, true);
 			}
 
-			return [
-				function Should_detect_opera_on_windows() {
+			return function() {
+				it('Should detect opera on Windows', function() {
 					verifyCommonValues(koopaDeref(data.opera.windows), 12);
-				},
+				});
 
-				function Should_detect_opera_on_mac() {
-					verifyCommonValues(koopaDeref(data.opera.mac), 10);
-				},
-
-				function Should_detect_opera_on_linux() {
+				it('Should detect opera on Linux', function() {
 					verifyCommonValues(koopaDeref(data.opera.linux), 11);
-				},
+				});
 
-				function Should_parse_version() {
+				it('Should detect opera on Mac', function() {
+					verifyCommonValues(koopaDeref(data.opera.mac), 10);
+				});
+
+				it('Should parse version', function() {
 					var info = koopaDeref(data.opera.mac);
+					expect(info.browser.version).to.have.property('major', '10');
+					expect(info.browser.version).to.have.property('minor', '61');
+					expect(info.browser.version).to.have.property('rest', '');
+					expect(info.browser.version.toString()).to.equal('10.61');
+				});
 
-					Assert.that(info.browser.version, Has.property('major').equalTo(10));
-					Assert.that(info.browser.version, Has.property('minor').equalTo(61));
-					Assert.that(info.browser.version, Has.property('rest').empty());
-					Assert.that(info.browser.version.toString(), Is.equalTo('10.61'));
-				},
-
-				function Should_parse_old_version() {
+				it('Should parse old version', function() {
 					var info = koopaDeref(data.opera.old);
-
-					Assert.that(info.browser.version, Has.property('major').equalTo(9));
-					Assert.that(info.browser.version, Has.property('minor').equalTo(63));
-					Assert.that(info.browser.version, Has.property('rest').empty());
-					Assert.that(info.browser.version.toString(), Is.equalTo('9.63'));
-				}
-			];
-		}()))
-	]);
-
-	if (typeof(module) === 'undefined') {
-		Jarvis.run(suite);
-	} else {
-		module.exports = suite;
-	}
+					expect(info.browser.version).to.have.property('major', '9');
+					expect(info.browser.version).to.have.property('minor', '63');
+					expect(info.browser.version).to.have.property('rest', '');
+					expect(info.browser.version.toString()).to.equal('9.63');
+				});
+			};
+		}()));
+	});
 }());
