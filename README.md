@@ -1,13 +1,10 @@
-Koopa 1.1.0
-===========
+# Koopa
 A browser sniffing library by [Tommy Montgomery](http://tmont.com/)
 
-License
--------
+## License
 Licensed under the [WTFPL](http://sam.zoy.org/wtfpl/)
 
-Quick and Dirty
----------------
+## Quick and Dirty
 __koopa__ is a pretty little thing that gives you information about a user agent.
 It can be used on IE6+, Firefox, Safari, Chrome, Opera and server-side with Node.
 Here is a bullet list of information it can provide:
@@ -69,14 +66,13 @@ function handleRequest(request) {
 ```
 
 Or use it to inspect your server logs on the command line. You know, in case it's 1994
-and you're not using Google Analytics.
+and you're not using analytics software.
 
 ```bash
 sudo tail -n 1 /var/log/nginx/access.log | php -r "echo end(fgetcsv(STDIN, 0, ' '));" | koopa
 ```
 
-Parsed User-Agent Values
-------------------------
+## Parsed User-Agent Values
 Only the `browser`, `os`, `engine` and `userAgent` properties will be set every time; the rest are conditional on the
 user agent string.
 
@@ -153,156 +149,169 @@ user agent string.
 __koopa__ will also set some version specific properties for the browser and os. Here are a
 few examples:
 
-#### Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1
-```javascript
-{
-	firefox: true,
-	firefox7: true,
-	linux: true,
-	userAgent: 'Mozilla/5.0 (X11; Linux i686; rv:7.0.1) Gecko/20100101 Firefox/7.0.1',
-	version: { 
-		major: '7',
-		minor: '0',
-		rest: '1'
-	}
-}
-```
-
 #### Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.20) Gecko/20110804 Red Hat/3.6-2.el5 Firefox/3.6.20
 ```javascript
 {
-	firefox: true,
-	firefox3: true,
-	linux: true,
-	redHat: true,
-	redHat3: true,
-	redHat3_6_2: true,
-	redHat3_6_2_el5: true,
-	sixtyFourBit: true,
-	userAgent: 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.20) Gecko/20110804 Red Hat/3.6-2.el5 Firefox/3.6.20',
-	version: { 
-		major: '3',
-		minor: '6',
-		rest: '20'
-	}
-}
-```
-
-#### Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2b5) Gecko/20091204 Firefox/3.6b5
-```javascript
-{
-	firefox: true,
-	firefox3: true,
-	windows: true,
-	windowsXp: true,
-	userAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.9.2b5) Gecko/20091204 Firefox/3.6b5',
-	version: {
-		major: '3',
-		minor: '6b5',
-		rest: ''
-	}
-}
-```
-
-#### Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 Firefox/4.0b8
-```javascript
-{
-	firefox: true,
-	firefox4: true,
-	macOsX: true,
-	macOsX10: true,
-	macOsX10_6: true,
-	macintosh: true,
-	sixtyFourBit: true,
-	snowLeopard: true,
-	userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 Firefox/4.0b8',
-	version: {
-		major: '4',
-		minor: '0b8',
-		rest: ''
-	}
+  "userAgent": "Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.20) Gecko/20110804 Red Hat/3.6-2.el5 Firefox/3.6.20",
+  "os": {
+    "family": "Linux",
+    "name": "",
+    "distro": "Red Hat",
+    "version": {
+      "major": "3",
+      "minor": "6-2",
+      "rest": "el5"
+    }
+  },
+  "browser": {
+    "name": "Firefox",
+    "version": {
+      "major": "3",
+      "minor": "6",
+      "rest": "20"
+    }
+  },
+  "engine": {
+    "name": "gecko",
+    "version": {
+      "major": "20110804",
+      "minor": "",
+      "rest": ""
+    }
+  },
+  "linux": true,
+  "redHat": true,
+  "redHat3": true,
+  "redHat3_6-2": true,
+  "redHat3_6_2_el5": true,
+  "sixtyFourBit": true,
+  "firefox": true,
+  "firefox3": true,
+  "gecko": true,
+  "gecko20110804": true
 }
 ```
 
 #### Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10
 ```javascript
 {
-	ios: true,
-	ipad: true,
-	mobile: true,
-	safari: true,
-	safari4: true,
-	userAgent: 'Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10',
-	version: {
-		major: '4',
-		minor: '0',
-		rest: '4'
-	}
-}
-```
-
-#### Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.04 Chromium/15.0.871.0 Chrome/15.0.871.0 Safari/535.2
-```javascript
-{
-	chrome: true,
-	chrome15: true,
-	linux: true,
-	sixtyFourBit: true,
-	ubuntu: true,
-	userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.04 Chromium/15.0.871.0 Chrome/15.0.871.0 Safari/535.2',
-	version: {
-		major: '15',
-		minor: '0',
-		rest: '871.0'
-	}
+  "userAgent": "Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10",
+  "os": {
+    "family": "",
+    "name": "",
+    "distro": "",
+    "version": {
+      "major": "",
+      "minor": "",
+      "rest": ""
+    }
+  },
+  "browser": {
+    "name": "Safari",
+    "version": {
+      "major": "4",
+      "minor": "0",
+      "rest": "4"
+    }
+  },
+  "engine": {
+    "name": "webkit",
+    "version": {
+      "major": "531",
+      "minor": "21",
+      "rest": "10"
+    }
+  },
+  "ipad": true,
+  "ios": true,
+  "mobile": true,
+  "safari": true,
+  "safari4": true,
+  "webkit": true,
+  "webkit531": true,
+  "webkit531_21": true,
+  "webkit531_21_10": true
 }
 ```
 
 #### Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)
 ```javascript
 {
-	ie: true,
-	ie9: true,
-	sixtyFourBit: true,
-	userAgent: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)',
-	version: {
-		major: '9',
-		minor: '0',
-		rest: ''
-	},
-	windows: true,
-	windows7: true
+  "userAgent": "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)",
+  "os": {
+    "family": "Windows",
+    "name": "Windows 7",
+    "distro": "",
+    "version": {
+      "major": "6",
+      "minor": "1",
+      "rest": ""
+    }
+  },
+  "browser": {
+    "name": "MSIE",
+    "version": {
+      "major": "9",
+      "minor": "0",
+      "rest": ""
+    }
+  },
+  "engine": {
+    "name": "trident",
+    "version": {
+      "major": "5",
+      "minor": "0",
+      "rest": ""
+    }
+  },
+  "windows": true,
+  "windows7": true,
+  "sixtyFourBit": true,
+  "ie": true,
+  "ie9": true,
+  "trident": true,
+  "trident5": true,
+  "trident5_0": true
 }
 ```
 
 #### Opera/9.80 (X11; Linux i686; U; hu) Presto/2.9.168 Version/11.50
 ```javascript
 {
-	linux: true,
-	opera: true,
-	opera11: true,
-	userAgent: 'Opera/9.80 (X11; Linux i686; U; hu) Presto/2.9.168 Version/11.50',
-	version: {
-		major: '11',
-		minor: '50',
-		rest: ''
-	}
-}
-```
-
-#### Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.337 Mobile Safari/534.1
-```javascript
-{
-	blackberry: true,
-	mobile: true,
-	safari: true,
-	safari6: true,
-	userAgent: 'Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, like Gecko) Version/6.0.0.337 Mobile Safari/534.1',
-	version: {
-		major: '6',
-		minor: '0',
-		rest: '0.337'
-	}
+  "userAgent": "Opera/9.80 (X11; Linux i686; U; hu) Presto/2.9.168 Version/11.50",
+  "os": {
+    "family": "Linux",
+    "name": "",
+    "distro": "",
+    "version": {
+      "major": "",
+      "minor": "",
+      "rest": ""
+    }
+  },
+  "browser": {
+    "name": "Opera",
+    "version": {
+      "major": "11",
+      "minor": "50",
+      "rest": ""
+    }
+  },
+  "engine": {
+    "name": "presto",
+    "version": {
+      "major": "2",
+      "minor": "9",
+      "rest": "168"
+    }
+  },
+  "linux": true,
+  "opera": true,
+  "opera11": true,
+  "presto": true,
+  "presto2": true,
+  "presto2_9": true,
+  "presto2_9_168": true
 }
 ```
 
