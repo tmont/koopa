@@ -305,3 +305,13 @@ few examples:
 	}
 }
 ```
+
+## Development
+```shell
+git clone git@github.com:tmont/koopa.git
+cd koopa
+npm link .
+npm test
+```
+
+To run dev server: `npm start` and navigate to `tests/test.html`.
